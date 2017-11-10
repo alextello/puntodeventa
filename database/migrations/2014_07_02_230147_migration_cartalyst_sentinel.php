@@ -58,7 +58,6 @@ class MigrationCartalystSentinel extends Migration
             $table->boolean('completed')->default(0);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
-
             $table->engine = 'InnoDB';
         });
 
@@ -68,7 +67,6 @@ class MigrationCartalystSentinel extends Migration
             $table->string('name');
             $table->text('permissions')->nullable();
             $table->timestamps();
-
             $table->engine = 'InnoDB';
             $table->unique('slug');
         });
@@ -96,13 +94,13 @@ class MigrationCartalystSentinel extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->integer('telefono')->nullable();
             $table->string('password');
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('nombre');
+            $table->string('apellido');
             $table->timestamps();
             $table->softDeletes();
 
@@ -110,12 +108,30 @@ class MigrationCartalystSentinel extends Migration
             $table->unique('email');
         });
 
+        Schema::create('departamentos', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('nombre');
+            $table->string('codigopostal');
+            $table->primary('id');
+        });
+
+        Schema::create('municipios', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('nombre');
+            $table->string('codigopostal');
+            $table->integer('departamento');
+            $table->primary(['id', 'departamento']);
+            $table->foreign('departamento')->references('id')->on('departamentos');
+        });
+
+
         Schema::create('detalleUsers', function (Blueprint $table) {
             $table->increments('user_id')->unsigned();
             $table->string('direccion')->nullable();;
             $table->string('departamento')->nullable();;
             $table->string('municipio')->nullable();;
             $table->string('foto')->nullable();
+            $table->integer('dpi')->unique();
             $table->engine = 'InnoDB';
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -136,6 +152,9 @@ class MigrationCartalystSentinel extends Migration
         Schema::drop('roles');
         Schema::drop('role_users');
         Schema::drop('throttle');
+        Schema::drop('detalleUsers');
         Schema::drop('users');
+        Schema::drop('departamentos');
+        Schema::drop('municipios');
     }
 }

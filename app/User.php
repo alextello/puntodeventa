@@ -23,8 +23,8 @@ class User extends CartalystUser
           'email',
           'username', /* i added this */
           'password',
-          'last_name',
-          'first_name',
+          'nombre',
+          'apellido',
           'permissions',
       ];
 
