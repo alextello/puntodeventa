@@ -15,8 +15,9 @@ class CRUDusers extends Controller
      */
     public function index()
     {
-      $users = Sentinel::getUserRepository()->with('roles')->get();
-        return view('usuarios.index', ['users' => $users]);
+      $currentUser = Sentinel::getUser();
+      $users = User::where('id', '!=', $currentUser->id)->get();
+      return view('usuarios.index', ['users' => $users]);
     }
 
     /**
@@ -62,8 +63,7 @@ class CRUDusers extends Controller
      */
     public function edit($id)
     {
-      // Sentinel::getUserRepository()->setModel('PuntoVenta\User');
-      // Sentinel::getPersistenceRepository()->setUsersModel('PuntoVenta\User');
+
       $user = User::find($id);
         return view('usuarios.edit',['user' => $user]);
     }
@@ -82,9 +82,7 @@ class CRUDusers extends Controller
 }
 else{
   $credentials = $request->except(['password']);
-
 }
-
       $user = Sentinel::findById($id);
       $user = Sentinel::update($user, $credentials);
       return redirect('/');
