@@ -11,44 +11,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('users')->insert([
-          'username' => 'at',
-          'email' => str_random(10).'@gmail.com',
-          'password' => bcrypt('secret'),
-          'telefono' => '123456',
-          'nombre' => 'alex',
-          'tello' => 'tello',
-      ]);
 
-      DB::table('departamentos')->insert([
-          'id' => '9',
-          'nombre' => 'Quetzaltenango',
-          'codigopostal' => '09001',
-      ]);
+      $role = [
+            'name' => 'Administrator',
+            'slug' => 'administrator',
+            ];
+$adminRole = Sentinel::getRoleRepository()->createModel()->fill($role)->save();
 
-      DB::table('municipios')->insert([
-          'id' => '8'.
-          'nombre' => 'San Juan Ostuncalco',
-          'codigopostal' => '09009',
-          'departamento' => '9',
-      ]);
+$admin = [
+			[
+        'username' => 'at',
+        'nombre' => 'alex',
+        'apellido' => 'tello',
+        'telefono' => '3827342',
+				'email'    => 'demo1@example.com',
+				'password' => 'pass',
+			],
+			[
+        'username' => 'et',
+        'nombre' => 'edwin',
+        'apellido' => 'tello',
+        'telefono' => '38328392',
+        'email'    => 'demo2@example.com',
+        'password' => 'pass',
+			],
+		];
 
-      DB::table('detalleUsers')->insert([
-          'direccion' => '3ra. avenida zona 3'.
-          'departamento' => '9',
-          'municipio' => '8',
-          'dpi' => '5392039489',
-      ]);
+    foreach($admin as $ad){
+      $nadmin = Sentinel::registerAndActivate($ad);
+      $nadmin->roles()->attach($adminRole);
+    }
 
-      DB::table('roles')->insert([
-          'name' => 'Administrador'.
-          'slug' => 'admin',
-      ]);
-
-      DB::table('role_users')->insert([
-          'user_id' => '1'.
-          'role_id' => '1',
-      ]);
 
     }
 }

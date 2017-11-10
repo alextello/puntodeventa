@@ -22,13 +22,13 @@
         <tbody>
           @foreach($users as $user)
           <tr>
-            <td>{{$user->first_name}}</td>
-            <td>{{$user->last_name}}</td>
+            <td>{{$user->nombre}}</td>
+            <td>{{$user->apellido}}</td>
             <td>{{$user->email}}</td>
             @foreach($user->roles as $role)
             <td>{{$role->name}}</td>
             @endforeach
-            <td><p data-placement="top" data-toggle="tooltip" title="Ver"><button class="btn btn-info btn-sm open-AddBookDialog" data-title="Ver" data-toggle="modal" data-target="#ver" data-nombre="{{ $user->first_name }}" data-apellido="{{ $user->last_name}}"
+            <td><p data-placement="top" data-toggle="tooltip" title="Ver"><button class="btn btn-info btn-sm open-AddBookDialog" data-title="Ver" data-toggle="modal" data-target="#ver" data-nombre="{{ $user->nombre }}" data-apellido="{{ $user->apellido }}"
               data-username="{{ $user->username }}" data-rol='{{ $user->rol }}'>
            <span class="glyphicon glyphicon-eye-open"></span></button></p></td>
             <td>{!!  link_to_route('usuarios.edit', $title = "Editar", $parameters = [$user->id], $attributes = ['class'=>'btn btn-primary btn-sm']); !!}</td>
