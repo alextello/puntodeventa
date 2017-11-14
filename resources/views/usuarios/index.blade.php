@@ -1,6 +1,7 @@
 @extends('layouts.menu')
 
 @section('cuerpo')
+Use Btn;
   <div class="page">
     <div class="content-fluid">
       <div class="row">
@@ -16,11 +17,11 @@
             <th>Rol</th>
             <th>Ver</th>
             <th>Editar</th>
-            <th>Eliminar</th>
+            <th>Activar/Desactivar</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($users as $user)
+          @forelse($users as $user)
           <tr>
             <td>{{$user->nombre}}</td>
             <td>{{$user->apellido}}</td>
@@ -32,12 +33,21 @@
               data-username="{{ $user->username }}" data-rol='{{ $user->rol }}'>
            <span class="glyphicon glyphicon-eye-open"></span></button></p></td>
             <td>{!!  link_to_route('usuarios.edit', $title = "Editar", $parameters = [$user->id], $attributes = ['class'=>'btn btn-primary btn-sm']); !!}</td>
-            <!-- <td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><button class="btn btn-danger btn-sm open-delete" data-title="Eliminar" data-toggle="modal" data-target="#eliminar" data-id={{ $user->id }} ><span class="glyphicon glyphicon-trash"></span></button></p></td> -->
-            <td> {!! Form::open(['route' => ['usuarios.destroy', $user->id], 'method' => 'DELETE']) !!}
-                      {!! Form::submit('Eliminar', ['class'=>'btn btn-danger btn-sm'  ]) !!}
-                  {!! Form::close() !!}</td>
+            @if($user->trashed())
+            <td>{!! Form::open([ 'method'  => 'PUT', 'route' => [ 'usuarios.update', $user->id ] ]) !!}
+                 {{ Form::submit('Activar', ['class' => 'btn btn-primary']) }}
+            {!! Form::close() !!}</td>
+            @else
+            <td>  {!! Form::open( ['route' => ['usuarios.destroy', $user->id],'method'=>'DELETE'] ) !!}
+                 {{ Form::submit('Eliminar', ['class' => 'btn btn-danger']) }}
+            {!! Form::close() !!}</td>
+            @endif
           </tr>
-          @endforeach
+          @empty
+          <tr>
+            <td>NO HAY USUARIOS</td>
+          </tr>
+          @endforelse
         </tbody>
   </div>
       </div>
@@ -99,6 +109,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
             {!! link_to_route('usuarios.destroy', $title = "Eliminar", $parameters = [$user->id], $attributes = ['class'=>'btn btn-danger']); !!}
           </div>
         </div>
@@ -117,11 +128,18 @@ $(document).ready(function () {
           $(".modal-body #nick").val( myBookId );
     });
 
-    $(document).on("click", ".open-delete", function () {
-        var id = $(this).data('id');
-         $(".modal-body #id").val( id );
-    });
+    $("#formEliminar").submit(function (event) {
+                   var x = confirm("Are you sure you want to delete?");
+                      if (x) {
+                          return true;
+                      }
+                      else {
 
+                          event.preventDefault();
+                          return false;
+                      }
+
+                  });
 
 });
 </script>

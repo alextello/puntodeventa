@@ -16,7 +16,7 @@ class CRUDusers extends Controller
     public function index()
     {
       $currentUser = Sentinel::getUser();
-      $users = User::where('id', '!=', $currentUser->id)->get();
+      $users = User::withTrashed()->get();
       return view('usuarios.index', ['users' => $users]);
     }
 
@@ -75,8 +75,13 @@ class CRUDusers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
+    $user = User::withTrashed()->find($id);
+    if($user->trashed()){
+      $user->restore();
+    }
+
       if ($request->filled('password')) {
             $credentials = $request->toArray();
 }
@@ -85,7 +90,7 @@ else{
 }
       $user = Sentinel::findById($id);
       $user = Sentinel::update($user, $credentials);
-      return redirect('/');
+      return redirect('usuarios');
 
     }
 
@@ -99,6 +104,6 @@ else{
     {
         $user = User::find($id);
         $user->delete();
-        return view('usuarios.delete');
+        return redirect('usuarios');
     }
 }
