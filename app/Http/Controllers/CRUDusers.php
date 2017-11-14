@@ -4,6 +4,7 @@ namespace PuntoVenta\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Sentinel;
+use Activation;
 use PuntoVenta\User;
 
 class CRUDusers extends Controller
@@ -15,7 +16,7 @@ class CRUDusers extends Controller
      */
     public function index()
     {
-      $currentUser = Sentinel::getUser();
+
       $users = User::withTrashed()->get();
       return view('usuarios.index', ['users' => $users]);
     }
@@ -79,7 +80,10 @@ class CRUDusers extends Controller
 
     $user = User::withTrashed()->find($id);
     if($user->trashed()){
-      $user->restore();
+      $activation = Activation::create($user);
+      $code = $activation->code;
+      Activation::complete($user, $code);
+        $user->restore();
     }
 
       if ($request->filled('password')) {
@@ -102,8 +106,15 @@ else{
      */
     public function destroy($id)
     {
+      $currentUser = Sentinel::getUser();
+      $user = Sentinel::findById($id);
+      if($currentUser == $user)
+      return redirect('usuarios');
+      else{
         $user = User::find($id);
         $user->delete();
+        Activation::remove($user);
         return redirect('usuarios');
+      }
     }
 }
