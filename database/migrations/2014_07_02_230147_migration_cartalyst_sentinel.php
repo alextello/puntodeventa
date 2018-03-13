@@ -30,7 +30,7 @@ class MigrationCartalystSentinel extends Migration
      */
     public function up()
     {
-        Schema::create('activations', function (Blueprint $table) {
+      Schema::create('activations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('code');
@@ -58,6 +58,7 @@ class MigrationCartalystSentinel extends Migration
             $table->boolean('completed')->default(0);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
+
             $table->engine = 'InnoDB';
         });
 
@@ -67,6 +68,7 @@ class MigrationCartalystSentinel extends Migration
             $table->string('name');
             $table->text('permissions')->nullable();
             $table->timestamps();
+
             $table->engine = 'InnoDB';
             $table->unique('slug');
         });
@@ -93,51 +95,51 @@ class MigrationCartalystSentinel extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->unique();
             $table->string('email');
-            $table->integer('telefono')->nullable();
             $table->string('password');
+            $table->string('username')->unique();
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->integer('telefono')->nullable();
+            $table->string('residencia')->nullable();
+            $table->date('nacimiento');
+            $table->string('genero');
             $table->timestamps();
             $table->softDeletes();
-
             $table->engine = 'InnoDB';
             $table->unique('email');
         });
 
-        Schema::create('departamentos', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('nombre');
-            $table->string('codigopostal');
-            $table->primary('id');
-        });
 
-        Schema::create('municipios', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('nombre');
-            $table->string('codigopostal');
-            $table->integer('departamento');
-            $table->primary(['id', 'departamento']);
-            $table->foreign('departamento')->references('id')->on('departamentos');
-        });
+    Schema::create('servicio', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('codigo')->unique();
+        $table->string('tipo');
+        $table->string('descripcion');
+        $table->float('costo')->nullable();
+        $table->timestamps();
+        $table->engine = 'InnoDB';
+    });
 
 
-        Schema::create('detalleUsers', function (Blueprint $table) {
-            $table->increments('user_id')->unsigned();
-            $table->string('direccion')->nullable();;
-            $table->string('departamento')->nullable();;
-            $table->string('municipio')->nullable();;
-            $table->string('foto')->nullable();
-            $table->integer('dpi')->unique();
-            $table->engine = 'InnoDB';
-            $table->foreign('user_id')->references('id')->on('users');
-        });
-
-
-    }
+Schema::create('citas', function (Blueprint $table) {
+    $table->increments('id');
+    $table->integer('idUser')->unsigned();
+    $table->integer('idAdmin');
+    $table->integer('idServicio')->unsigned();
+    $table->date('fecha');
+    $table->time('hora');
+    $table->text('descripcion')->nullable();
+    $table->boolean('estado')->nullable();
+    $table->boolean('solicitud')->nullable();
+    $table->timestamps();
+    $table->foreign('idUser')->references('id')->on('users');
+    $table->foreign('idServicio')->references('id')->on('servicio');
+    $table->engine = 'InnoDB';
+});
+}
 
     /**
      * Reverse the migrations.

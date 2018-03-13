@@ -19,6 +19,12 @@
     </head>
     <body id="minovate" class="appWrapper">
         <div id="wrap" class="animsition">
+          @if(session('error'))
+            <div class="alert alert-danger alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Whoops! </strong> {{ session('error')}}
+            </div>
+            @endif
             <div class="page page-core page-login">
                 <div class="text-center"><h3 class="text-light text-white"><span class="text-lightred">M</span>I <span class="text-lightred">I</span>NVENTARIO</h3></div>
                 <div class="container w-420 p-15 bg-white mt-40 text-center">

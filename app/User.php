@@ -12,6 +12,7 @@ class User extends CartalystUser
     use Notifiable;
     use SoftDeletes;
 
+
     protected $dates = ['deleted_at'];
 
     /**
@@ -20,17 +21,25 @@ class User extends CartalystUser
      * @var array
      */
      protected $fillable = [
-          'email',
-          'username', /* i added this */
-          'password',
-          'nombre',
-          'apellido',
-          'permissions',
-      ];
+           'email',
+           'username', /* i added this */
+           'password',
+           'first_name',
+           'last_name',
+           'permissions',
+           'nacimiento',
+           'residencia',
+           'genero',
+           'telefono',
+       ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function citas()
+ {
+     return $this->hasMany('PuntoVenta\Citas', 'idUser');
+ }
 
     public function setPasswordAttribute($val){
          $this->attributes['password'] = trim($val) !== '' ? $val : null;

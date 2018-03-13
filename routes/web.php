@@ -22,3 +22,12 @@ Route::get('/login', 'LoginController@loginGet');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/dashboard', 'MainController@dashboard');
 Route::resource('usuarios', 'CRUDusers');
+
+Route::resource('pacientes', 'PacientesController');
+  Route::post('registro', 'RegistroController@registro');
+  Route::resource('citas', 'CitasController');
+  Route::resource('Ncita', 'NCitaController');
+  Route::resource('user', 'UserController');
+Route::post('login', 'LoginController@login')->middleware('web');
+Route::get('/logout', 'LoginController@logout');
+Route::get('/send', 'LoginController@send');
