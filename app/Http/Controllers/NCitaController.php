@@ -7,6 +7,7 @@ use PuntoVenta\Servicio;
 use PuntoVenta\Citas;
 use PuntoVenta\User;
 use Sentinel;
+use Carbon\Carbon;
 
 class NCitaController extends Controller
 {
@@ -78,16 +79,32 @@ class NCitaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cita = new Citas;
-        $cita->fecha = $request->fecha;
-        $cita->hora = $request->hora;
-        $cita->descripcion = $request->descripcion;
-        $cita->idServicio = $request->idServicio;
-        $cita->idUser = $id;
-        $cita->idAdmin = Sentinel::getUser()->id;
-        $cita->estado = null;
-        $cita->save();
-        return redirect('pacientes');
+        $citasHoy = Carbon::now('America/Guatemala');
+        $citasHoy = $citasHoy->toDateString();
+        $ct = Citas::where('fecha', $citasHoy)->get();
+        foreach($ct as $cita){
+        $mergeQuery = date('Y-m-d H:i:s', strtotime("$cita->fecha $cita->hora"));
+        $Fcita = Carbon::parse($mergeQuery, 'America/Guatemala');
+        $mergeNCita = date('Y-m-d H:i:s', strtotime("$request->fecha $request->hora"));
+        $nuevaCita = Carbon::parse($mergeNCita, 'America/Guatemala');
+        $length = $nuevaCita->diffInHours($Fcita);
+        if($length < 1){
+          return redirect()->back()->with(['error' => 'Hay una cita a las '.$cita->hora.' Elija otra hora']);
+        }
+        else{
+          $cita = new Citas;
+          $cita->fecha = $request->fecha;
+          $cita->hora = $request->hora;
+          $cita->descripcion = $request->descripcion;
+          $cita->idServicio = $request->idServicio;
+          $cita->idUser = $id;
+          $cita->idAdmin = Sentinel::getUser()->id;
+          $cita->estado = null;
+          $cita->save();
+          return redirect('pacientes');
+        }
+      }
+
     }
 
     /**

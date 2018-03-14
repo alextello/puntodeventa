@@ -288,6 +288,12 @@
                 <strong>Guardado!</strong> {{ session('msj')}}
               </div>
               @endif
+              @if(session('error'))
+              <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Whoops!</strong> {{ session('error')}}
+              </div>
+              @endif
                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">

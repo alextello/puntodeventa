@@ -183,46 +183,19 @@
                                 <th>Paciente</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
-                                <th>Estado</th>
+                                <th>Descripcion</th>
                             </tr>
                             </thead>
                             <tbody>
+                              @forelse($pxCitas as $px)
                             <tr>
-                                <th class="text-muted">Apple Technology</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
+                                <th class="text-muted">{{$px->user->first_name}}</th>
+                                <td>{{$px->fecha}}</td>
+                                <td>{{$px->hora}}</td>
+                                <td><span class="label label-success">{{$px->descripcion}}</span></td>
+                              @empty
                             </tr>
-                            <tr>
-                                <th class="text-muted">Envato Pty Ltd.</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-danger">Unpaid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Dribbble LLC.</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Adobe Family</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Apple Technology</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-danger">Unpaid</span></td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Envato Pty Ltd.</th>
-                                <td>20/02/2014</td>
-                                <td>19/02/2020</td>
-                                <td><span class="label label-success">Paid</span></td>
-                            </tr>
+                              @endforelse
                             </tbody>
                         </table>
                     </div>

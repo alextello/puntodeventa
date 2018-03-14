@@ -17,11 +17,9 @@ class LoginController extends Controller
   $role = Sentinel::findRoleById(2);//creamos un objeto del rol user
   $numUsers = $role->users()->with('roles')->count();//consultamos cuantos usuarios hay con ese rol
   $numCitas = Citas::all()->count();
- $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
- // $comments = Citas::with('user')->find(7);
- dd($citasPend);
-
-  return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend]);//retornamos la vista con dicha variable
+  $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
+  $pxCitas = Citas::with(['user'])->where('estado', null)->get();
+  return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas]);//retornamos la vista con dicha variable
 }
   else if(Sentinel::check() && Sentinel::getUser()->roles()->first()->slug=='user')
   {
@@ -66,7 +64,8 @@ class LoginController extends Controller
                           $numUsers = $role->users()->with('roles')->count();//consultamos cuantos usuarios hay con ese rol
                           $numCitas = Citas::all()->count();
                           $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
-                          return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend]);//retornamos la vista con dicha variable
+                          $pxCitas = Citas::with(['user'])->where('estado', null)->get();
+                          return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas]);//retornamos la vista con dicha variable
                         }
                         else{
 
