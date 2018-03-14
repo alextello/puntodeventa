@@ -3,9 +3,11 @@
 namespace PuntoVenta;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class servicio extends Model
 {
+    use SoftDeletes;
   protected $table = 'servicio';
 
   protected $fillable = [

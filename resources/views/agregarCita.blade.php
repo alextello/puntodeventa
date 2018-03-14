@@ -222,17 +222,15 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="index"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
+                                <a href="/"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> Pacientes </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li>{!! link_to_route('pacientes.create', $title = 'Agregar paciente', $parameters = [], $attributes = []); !!}</li>
-                                            <li><a href="pages-recoverpw">Buscar / Modificar Paciente</a></li>
-                                            <li><a href="lista-pacientes">Listar Pacientes</a></li>
-                                            <li><a href="pages-lock-screen">Generar Usuario</a></li>
+                                            <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -249,22 +247,6 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-text"></i><span> Pagos </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-register">Realizar Pago</a></li>
-                                            <li><a href="pages-lock-screen">Pagos Pendientes</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Reportes </span> </a>
                             </li>
 
                         </ul>

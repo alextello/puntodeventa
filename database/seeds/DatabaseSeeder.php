@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
             ];
 $adminRole = Sentinel::getRoleRepository()->createModel()->fill($role)->save();
 
+$roleuser = [
+      'name' => 'User',
+      'slug' => 'user',
+      ];
+$nRole = Sentinel::getRoleRepository()->createModel()->fill($roleuser)->save();
+
 $admin = [
 			[
         'username' => 'at',
@@ -48,6 +54,13 @@ $admin = [
       $nadmin->roles()->attach($adminRole);
     }
 
+
+    DB::table('servicios')->insert([
+              'codigo' => str_random(2),
+              'tipo' => 'Consulta',
+              'descripcion' => 'inspeccion de rutina',
+              'costo' => '200',
+      ]);
 
     }
 }

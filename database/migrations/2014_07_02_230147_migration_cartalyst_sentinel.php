@@ -120,6 +120,7 @@ class MigrationCartalystSentinel extends Migration
         $table->string('descripcion');
         $table->float('costo')->nullable();
         $table->timestamps();
+        $table->softDeletes();
         $table->engine = 'InnoDB';
     });
 
@@ -139,6 +140,9 @@ Schema::create('citas', function (Blueprint $table) {
     $table->foreign('idServicio')->references('id')->on('servicio');
     $table->engine = 'InnoDB';
 });
+
+
+
 }
 
     /**

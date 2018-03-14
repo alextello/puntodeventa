@@ -31,3 +31,4 @@ Route::resource('pacientes', 'PacientesController');
 Route::post('login', 'LoginController@login')->middleware('web');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/send', 'LoginController@send');
+Route::resource('servicio', 'ServicioController');

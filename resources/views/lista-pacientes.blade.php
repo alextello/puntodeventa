@@ -46,7 +46,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo">
+                        <a href="/" class="logo">
                             <i class="zmdi zmdi-group-work icon-c-logo"></i>
                             <span>MEDIX</span>
                         </a>
@@ -220,17 +220,15 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="index.html"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
+                                <a href="/"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> Pacientes </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="pages-register.html">Agregar Paciente</a></li>
-                                            <li><a href="pages-recoverpw.html">Buscar / Modificar Paciente</a></li>
-                                            <li><a href="pages-lock-screen.html">Listar Pacientes</a></li>
-                                            <li><a href="pages-lock-screen.html">Generar Usuario</a></li>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -241,30 +239,11 @@
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="pages-register.html">Nueva Cita</a></li>
-                                            <li><a href="pages-lock-screen.html">Listar Citas</a></li>
-                                            <li><a href="pages-lock-screen.html">Posponer / Cancelar Cita</a></li>
+                                            <li><a href="pages-lock-screen">Listar Citas</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-text"></i><span> Pagos </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-register.html">Realizar Pago</a></li>
-                                            <li><a href="pages-lock-screen.html">Pagos Pendientes</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Reportes </span> </a>
-                            </li>
-
                         </ul>
                         <!-- End navigation menu  -->
                     </div>
