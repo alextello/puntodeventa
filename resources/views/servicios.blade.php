@@ -46,7 +46,7 @@
                     <!-- LOGO -->
                     <div class="topbar-left">
                         <a href="/" class="logo">
-                            <i class="fa fa-heartbeat"></i>
+                            <i class="zmdi zmdi-group-work icon-c-logo"></i>
                             <span>MEDIX</span>
                         </a>
                     </div>
@@ -70,26 +70,19 @@
                             </li>
 
                             <li class="list-inline-item dropdown notification-list">
-                                <a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">
-                                    <i class="zmdi zmdi-format-subject noti-icon"></i>
-                                </a>
-                            </li>
-
-                            <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                   {{ HTML::image('assets/images/users/avatar-1.jpg', 'alt user', array('class' => 'rounded-circle')) }}
-
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>Hola {{ Sentinel::getUser()->first_name }}</small> </h5>
+                                        <h5 class="text-overflow"><small>@yield('usuario')</small> </h5>
                                     </div>
-
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="zmdi zmdi-power"></i> <span>Salir</span>
+                                    <a href="/logout" class="dropdown-item notify-item">
+                                        <i class="zmdi zmdi-power">
+                                          <span>Logout</span>  </i>
                                     </a>
 
                                 </div>
@@ -108,7 +101,6 @@
             <div class="navbar-custom">
                 <div class="container">
                     <div id="navigation">
-                        <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
                                 <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
