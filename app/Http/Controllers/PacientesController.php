@@ -23,7 +23,7 @@ class PacientesController extends Controller
     public function index()
     {
       $users = User::with(['citas' => function ($query) {
-      $query->orderBy('fecha', 'desc')->get();
+      $query->orderBy('fecha', 'desc')->first();
     }])->withTrashed()->get()->except(Sentinel::getUser()->id);
 
       return view('lista-pacientes', ['users' => $users]);
