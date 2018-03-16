@@ -14,7 +14,7 @@ class ServicioController extends Controller
      */
     public function index()
     {
-      $servicios = Servicio::all();
+      $servicios = Servicio::withTrashed()->get();
         return view('servicios', ['servicios' => $servicios]);
     }
 
@@ -71,7 +71,8 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        //
+      $servicio = Servicio::find($id);
+      return view('editarServicio', ['servicio' => $servicio]);
     }
 
     /**
@@ -83,7 +84,9 @@ class ServicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $servicio = Servicio::find($id);
+      $servicio->update($request->all());
+      return redirect('servicio')->with(['msj' => 'Servicio actualizado']);
     }
 
     /**
@@ -94,6 +97,13 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $servicio = Servicio::withTrashed()->find($id);
+        if($servicio->trashed()){
+          $servicio->restore();
+        }
+        else{
+          $servicio->delete();
+        }
+        return redirect()->back();
     }
 }

@@ -10,7 +10,14 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- App title -->
-        <title>Uplon - Responsive Admin Dashboard Template</title>
+        <title>Citas por fecha</title>
+
+        <!-- Plugins css -->
+        <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/mjolnic-bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
         <!-- Switchery css -->
         <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
@@ -36,9 +43,9 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index" class="logo">
+                        <a href="/" class="logo">
                             <i class="zmdi zmdi-group-work icon-c-logo"></i>
-                            <span>Uplon</span>
+                            <span>MEDIX</span>
                         </a>
                     </div>
                     <!-- End Logo container-->
@@ -163,7 +170,7 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
@@ -210,120 +217,34 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="index"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                                <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> User Interface </span> </a>
+                                <a href="#"><i class="fa fa-users"></i> <span> Pacientes </span> </a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                      <ul>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                      </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Citas </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="ui-buttons">Buttons</a></li>
-                                            <li><a href="ui-cards">Cards</a></li>
-                                            <li><a href="ui-dropdowns">Dropdowns</a></li>
-                                            <li><a href="ui-checkbox-radio">Checkboxs-Radios</a></li>
-                                            <li><a href="ui-navs">Navs</a></li>
-                                            <li><a href="ui-progress">Progress</a></li>
-                                            <li><a href="ui-modals">Modals</a></li>
-                                            <li><a href="ui-alerts">Alerts</a></li>
-                                            <li><a href="ui-bootstrap">Bootstrap UI</a></li>
-                                            <li><a href="ui-typography">Typography</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="ui-notification">Notification</a></li>
-                                            <li><a href="ui-carousel">Carousel</a></li>
-                                            <li><a href="components-grid">Grid</a></li>
-                                            <li><a href="components-range-sliders">Range sliders</a></li>
-                                            <li><a href="components-sweet-alert">Sweet Alerts</a></li>
-                                            <li><a href="components-ratings">Ratings</a></li>
-                                            <li><a href="components-treeview">Treeview</a></li>
-                                            <li><a href="components-tour">Tour</a></li>
-                                            <li><a href="widgets-tiles">Tile Box</a></li>
-                                            <li><a href="widgets-charts">Chart Widgets</a></li>
+                                            <li>{!! link_to('citas-hoy', $title = 'Ver citas de hoy', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-por-fecha', $title = 'Ver citas por fecha', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-album"></i> <span> Icons </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="icons-materialdesign">Material Design</a></li>
-                                    <li><a href="icons-ionicons">Ion Icons</a></li>
-                                    <li><a href="icons-fontawesome">Font awesome</a></li>
-                                    <li><a href="icons-themify">Themify Icons</a></li>
-                                    <li><a href="icons-simple-line">Simple line Icons</a></li>
-                                    <li><a href="icons-weather">Weather Icons</a></li>
-                                    <li><a href="icons-pe7">PE7 Icons</a></li>
-                                    <li><a href="icons-typicons">Typicons</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-text"></i><span> Forms </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="form-elements">General Elements</a></li>
-                                    <li><a href="form-advanced">Advanced Form</a></li>
-                                    <li><a href="form-validation">Form Validation</a></li>
-                                    <li><a href="form-pickers">Form Pickers</a></li>
-                                    <li><a href="form-wizard">Form Wizard</a></li>
-                                    <li><a href="form-mask">Form Masks</a></li>
-                                    <li><a href="form-uploads">Multiple File Upload</a></li>
-                                    <li><a href="form-xeditable">X-editable</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Tables </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="tables-basic">Basic Tables</a></li>
-                                    <li><a href="tables-datatable">Data Table</a></li>
-                                    <li><a href="tables-responsive">Responsive Table</a></li>
-                                    <li><a href="tables-tablesaw">Tablesaw</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-chart"></i><span> Charts </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="chart-flot">Flot Chart</a></li>
-                                    <li><a href="chart-morris">Morris Chart</a></li>
-                                    <li><a href="chart-chartjs">Chartjs</a></li>
-                                    <li><a href="chart-peity">Peity Charts</a></li>
-                                    <li><a href="chart-chartist">Chartist Charts</a></li>
-                                    <li><a href="chart-c3">C3 Charts</a></li>
-                                    <li><a href="chart-sparkline">Sparkline charts</a></li>
-                                    <li><a href="chart-knob">Jquery Knob</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-item"></i> <span> Pages </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="calendar">Calendar</a></li>
-                                            <li><a href="pages-starter">Starter Page</a></li>
-                                            <li><a href="pages-login">Login</a></li>
-                                            <li><a href="pages-register">Register</a></li>
-                                            <li><a href="pages-recoverpw">Recover Password</a></li>
-                                            <li><a href="pages-lock-screen">Lock Screen</a></li>
-                                            <li><a href="pages-404">Error 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-500">Error 500</a></li>
-                                            <li><a href="pages-timeline">Timeline</a></li>
-                                            <li><a href="pages-invoice">Invoice</a></li>
-                                            <li><a href="pages-pricing">Pricing</a></li>
-                                            <li><a href="pages-gallery">Gallery</a></li>
-                                            <li><a href="pages-maintenance">Maintenance</a></li>
-                                            <li><a href="pages-comingsoon">Coming Soon</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="{{ route('servicio.index') }}"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
                             </li>
 
                         </ul>
@@ -341,111 +262,67 @@
         <!-- ============================================================== -->
         <div class="wrapper">
             <div class="container">
+                {!!  Form::open(['route' => ['citas-por-fecha'],'method'=>'POST']) !!}
+              <div class="form-group">
+                  <label>Rango de fecha</label>
+                  <div>
+                      <div class="input-daterange input-group" id="date-range">
+                          <input type="text" class="form-control" name="start"  id="start" />
+                          <span class="input-group-addon bg-custom b-0">A:</span>
+                          <input type="text" class="form-control" name="end"  id="end" />
+                      </div>
+                  </div>
+                  {!! Form::submit('Actualizar', ['class' => 'form-control btn btn-success']) !!}
+                  {!! Form::close() !!}
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card-box table-responsive">
+                          <h4 class="m-t-0 header-title"><b>Citas de hoy</b></h4>
+                          <p class="text-muted font-13 m-b-30"></p>
 
-                <!-- Page-Title -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light"
-                                    data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i
-                                    class="fa fa-cog"></i></span></button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-
-                        </div>
-                        <h4 class="page-title">Sparkline Charts</h4>
-                    </div>
-                </div>
-                <!-- end row -->
-
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card-box">
-
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4">
-                                    <h4 class="header-title m-t-0">Line Charts</h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Display as line Chart.Your awesome text goes here.
-                                    </p>
-
-                                    <div class="p-20">
-                                        <div id="sparkline1"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4">
-                                    <h4 class="header-title m-t-0">Bar Chart</h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Display as bar Chart.Your awesome text goes here.
-                                    </p>
-
-                                    <div class="p-20">
-                                        <div id="sparkline2" class="text-xs-center"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4">
-                                    <h4 class="header-title m-t-0">Pie Chart</h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Display as pie Chart.Your awesome text goes here.
-                                    </p>
-
-                                    <div class="p-20">
-                                        <div id="sparkline3" class="text-xs-center"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end row -->
-
-                            <div class="row m-t-50">
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4 m-t-20">
-                                    <h4 class="header-title m-t-0">Custom Line Chart</h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Display as custom line Chart.Your awesome text goes here.
-                                    </p>
-
-                                    <div class="p-20">
-                                        <div id="sparkline4" class="text-xs-center"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4 m-t-20">
-                                    <h4 class="header-title m-t-0">Mouse Speed Chart Example</h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Display as Mouse Speed Chart.Your awesome text goes here.
-                                    </p>
-
-                                    <div class="p-20">
-                                        <div id="sparkline5" class="text-xs-center"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4 m-t-20">
-                                    <h4 class="header-title m-t-0">Composite bar Chart</h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Display as Composite bar Chart.Your awesome text goes here.
-                                    </p>
-
-                                    <div class="p-20">
-                                        <div id="sparkline6" class="text-xs-center"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end row -->
+                          <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefono</th>
+                                <th>Hora</th>
+                                <th>Descripcion de cita</th>
+                                <th>Estado</th>
+                                <th>Culminar cita</th>
+                            </tr>
+                            </thead>
 
 
-                        </div>
-                    </div><!-- end col-->
-
-                </div>
-                <!-- end row -->
+                            <tbody>
+                              @forelse ($citas as $key => $ct)
+                              <tr>
+                            <td>{{ $ct->user->first_name }}</td>
+                            <td>{{ $ct->user->last_name }}</td>
+                            <td>{{ $ct->user->telefono }}</td>
+                            <td>{{ $ct->hora }}</td>
+                            <td>{{$ct->descripcion }}</td>
+                            @if(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->gt(\Carbon\Carbon::parse($ct->fecha)))
+                            <td>No culminada</td>
+                            <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
+                                 {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                            {!! Form::close() !!}</td>
+                            @elseif(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->lt(\Carbon\Carbon::parse($ct->fecha)))
+                            <td>No culminada</td>
+                            <td><strong>No se puede finalizar aun</strong></td>
+                            @else
+                            <td>Culminada</td>
+                            <td><strong>No se puede modificar</strong></td>
+                            @endif
+                            </tr>
+                            @empty
+                            @endforelse
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div> <!-- end row -->
 
             </div> <!-- container -->
 
@@ -592,9 +469,14 @@
         <script src="assets/js/jquery.nicescroll.js"></script>
         <script src="assets/plugins/switchery/switchery.min.js"></script>
 
-        <!-- Sparkline charts js -->
-        <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
-        <script src="assets/pages/jquery.charts-sparkline.js"></script>
+        <script src="assets/plugins/moment/moment.js"></script>
+        <script src="assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="assets/plugins/mjolnic-bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+        <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="assets/plugins/clockpicker/bootstrap-clockpicker.js"></script>
+        <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+        <script src="assets/pages/jquery.form-pickers.init.js"></script>
 
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>

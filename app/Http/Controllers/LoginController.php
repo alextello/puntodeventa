@@ -7,6 +7,7 @@ use Sentinel;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use PuntoVenta\User;
 use PuntoVenta\Citas;
+use PuntoVenta\Servicio;
 use PuntoVenta\Mail\NuevoUsuario;
 use Illuminate\Support\Facades\Mail;
 
@@ -19,7 +20,26 @@ class LoginController extends Controller
   $numCitas = Citas::all()->count();
   $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
   $pxCitas = Citas::with(['user'])->where('estado', null)->get();
-  return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas]);//retornamos la vista con dicha variable
+  $pagos = Citas::with(['servicio'])->where('estado', '1')->get();
+  $dinero = 0;
+  foreach($pagos as $p){
+    $dinero = $dinero+$p->servicio->costo;
+  }
+  $totalCitas = Citas::all()->count();
+  $terminadas = Citas::where('estado', '1')->count();
+  $cancelacion = Citas::where('estado', null)->where('solicitud', '1')->count();
+  if($totalCitas > 0){
+  $Pterminadas = ($terminadas/$totalCitas)*100;
+  $Psolicitudes = ($cancelacion/$totalCitas)*100;
+}
+else{
+  $Pterminadas = 100;
+  $Psolicitudes = 0;
+}
+$Ppendientes = 100-$Pterminadas;
+
+
+  return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas, 'dinero' => $dinero, 'Ppendientes' => $Ppendientes, 'Pterminadas' => $Pterminadas, 'Psolicitudes' => $Psolicitudes]);//retornamos la vista con dicha variable
 }
   else if(Sentinel::check() && Sentinel::getUser()->roles()->first()->slug=='user')
   {
@@ -65,7 +85,12 @@ class LoginController extends Controller
                           $numCitas = Citas::all()->count();
                           $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
                           $pxCitas = Citas::with(['user'])->where('estado', null)->get();
-                          return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas]);//retornamos la vista con dicha variable
+                          $pagos = Citas::with(['servicio'])->where('estado', '1')->get();
+                          $dinero = 0;
+                          foreach($pagos as $p){
+                            $dinero = $dinero+$p->servicio->costo;
+                          }
+                          return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas, 'dinero' => $dinero]);
                         }
                         else{
 

@@ -39,7 +39,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo">
+                        <a href="/" class="logo">
                             <i class="zmdi zmdi-group-work icon-c-logo"></i>
                             <span>MEDIX</span>
                         </a>
@@ -116,7 +116,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-faded">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="img" class="rounded-circle img-fluid">
+                                            {{ HTML::image('assets/images/users/avatar-1.jpg', 'alt user', array('class' => 'rounded-circle')) }}
                                         </div>
                                         <p class="notify-details">
                                             <b>Robert Taylor</b>
@@ -166,7 +166,7 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
@@ -204,9 +204,6 @@
                         <ul class="navigation-menu">
                             <li>
                                 <a href="/"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
-                            </li>
-                            <li>
-                                <a href="contacto"><i class="zmdi zmdi-format-underlined"></i> <span> Contacto </span> </a>
                             </li>
                         </ul>
                         <!-- End navigation menu  -->

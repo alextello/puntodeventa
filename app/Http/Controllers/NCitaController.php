@@ -79,32 +79,56 @@ class NCitaController extends Controller
      */
     public function update(Request $request, $id)
     {
+      if(empty($request->idServicio)){
+        return redirect()->back()->with(['error' => 'Seleccione un servicio']);
+      }
+      else{
         $citasHoy = Carbon::now('America/Guatemala');
-        $citasHoy = $citasHoy->toDateString();
-        $ct = Citas::where('fecha', $citasHoy)->get();
-        foreach($ct as $cita){
-        $mergeQuery = date('Y-m-d H:i:s', strtotime("$cita->fecha $cita->hora"));
-        $Fcita = Carbon::parse($mergeQuery, 'America/Guatemala');
         $mergeNCita = date('Y-m-d H:i:s', strtotime("$request->fecha $request->hora"));
         $nuevaCita = Carbon::parse($mergeNCita, 'America/Guatemala');
-        $length = $nuevaCita->diffInHours($Fcita);
-        if($length < 1){
-          return redirect()->back()->with(['error' => 'Hay una cita a las '.$cita->hora.' Elija otra hora']);
+        $ct = Citas::where('fecha', $citasHoy)->get();
+        if($nuevaCita->lt($citasHoy)){
+          return redirect()->back()->with(['error' => 'No puede crear una cita al pasado']);
         }
         else{
-          $cita = new Citas;
-          $cita->fecha = $request->fecha;
-          $cita->hora = $request->hora;
-          $cita->descripcion = $request->descripcion;
-          $cita->idServicio = $request->idServicio;
-          $cita->idUser = $id;
-          $cita->idAdmin = Sentinel::getUser()->id;
-          $cita->estado = null;
-          $cita->save();
-          return redirect('pacientes');
+        if($ct->isNotEmpty()){
+          foreach($ct as $cita){
+          $mergeQuery = date('Y-m-d H:i:s', strtotime("$cita->fecha $cita->hora"));
+          $Fcita = Carbon::parse($mergeQuery, 'America/Guatemala');
+          $length = $nuevaCita->diffInHours($Fcita);
+          if($length < 1){
+            return redirect()->back()->with(['error' => 'Hay una cita a las '.$cita->hora.' Elija otra hora']);
+          }
+          else{
+            $cita = new Citas;
+            $cita->fecha = $request->fecha;
+            $cita->hora = $request->hora;
+            $cita->descripcion = $request->descripcion;
+            $cita->idServicio = $request->idServicio;
+            $cita->idUser = $id;
+            $cita->idAdmin = Sentinel::getUser()->id;
+            $cita->estado = null;
+            $cita->save();
+            return redirect('pacientes');
+          }
         }
       }
+      else{
+        $cita = new Citas;
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->descripcion = $request->descripcion;
+        $cita->idServicio = $request->idServicio;
+        $cita->idUser = $id;
+        $cita->idAdmin = Sentinel::getUser()->id;
+        $cita->estado = null;
+        $cita->save();
+        return redirect('pacientes');
+      }
 
+      }
+
+      }
     }
 
     /**
@@ -115,6 +139,9 @@ class NCitaController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $cita = Citas::find($id);
+      $cita->estado = '1';
+      $cita->save();
+      return redirect()->back();
     }
 }

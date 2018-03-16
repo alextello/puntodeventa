@@ -32,7 +32,6 @@
 
     <!-- Modernizr js -->
     {!! Html::style('assets/js/modernizr.min.js') !!}
-    <script src=""></script>
 
 </head>
 
@@ -46,7 +45,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo">
+                        <a href="/" class="logo">
                             <i class="fa fa-heartbeat"></i>
                             <span>MEDIX</span>
                         </a>
@@ -85,7 +84,7 @@
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>Hola !Nombre</small> </h5>
+                                        <h5 class="text-overflow"><small>Hola {{ Sentinel::getUser()->first_name }}</small> </h5>
                                     </div>
 
                                     <!-- item-->
@@ -112,18 +111,16 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="index.html"><i class="fa fa-home"></i> <span> Inicio </span> </a>
+                                <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
                                 <a href="#"><i class="fa fa-users"></i> <span> Pacientes </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
-                                        <ul>
-                                            <li><a href="pages-register.html">Agregar Paciente</a></li>
-                                            <li><a href="pages-recoverpw.html">Buscar / Modificar Paciente</a></li>
-                                            <li><a href="pages-lock-screen.html">Listar Pacientes</a></li>
-                                            <li><a href="pages-lock-screen.html">Generar Usuario</a></li>
-                                        </ul>
+                                      <ul>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                      </ul>
                                     </li>
                                 </ul>
                             </li>
@@ -133,20 +130,15 @@
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="pages-register.html">Nueva Cita</a></li>
-                                            <li><a href="pages-lock-screen.html">Listar Citas</a></li>
-                                            <li><a href="pages-lock-screen.html">Posponer / Cancelar Cita</a></li>
+                                            <li>{!! link_to('citas-hoy', $title = 'Ver citas de hoy', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-por-fecha', $title = 'Ver citas por fecha', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li class="has-submenu active">
-                                <a href="#"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
-                            </li>
-
                             <li class="has-submenu">
-                                <a href="#"><i class="fa fa-line-chart"></i> <span> Reportes </span> </a>
+                                <a href="{{ route('servicio.index') }}"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
                             </li>
 
                         </ul>
@@ -164,7 +156,12 @@
         <!-- ============================================================== -->
         <div class="wrapper">
             <div class="container">
-
+              @if(session('msj'))
+              <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Listo!</strong> {{ session('msj')}}
+              </div>
+              @endif
               <div class="row">
                   <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
                       <div class="card-box tilebox-one">
@@ -212,11 +209,11 @@
                                     <td>{{ $ser->costo }}</td>
                                     <td>{!! link_to_route('servicio.edit', $title = 'Editar', $parameters = $ser->id, $attributes = ['class' => 'btn btn-outline-primary waves-effect waves-light btn-sm']); !!}</td>
                                     @if($ser->trashed())
-                                    <td>{!! Form::open( ['route' => ['servicios.destroy', $ser->id],'method'=>'DELETE'] ) !!}
+                                    <td>{!! Form::open( ['route' => ['servicio.destroy', $ser->id],'method'=>'DELETE'] ) !!}
                                          {{ Form::button('Activar', ['class' => 'btn btn-outline-success waves-effect waves-light btn-sm', 'type'=>'submit']) }}
                                     {!! Form::close() !!}</td>
                                     @else
-                                    <td>  {!! Form::open( ['route' => ['servicios.destroy', $ser->id],'method'=>'DELETE'] ) !!}
+                                    <td>  {!! Form::open( ['route' => ['servicio.destroy', $ser->id],'method'=>'DELETE'] ) !!}
                                          {{ Form::button('Desactivar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
                                     {!! Form::close() !!}</td>
                                     @endif

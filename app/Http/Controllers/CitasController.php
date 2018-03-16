@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PuntoVenta\Citas;
 use Carbon\Carbon;
 use PuntoVenta\Servicio;
+use PuntoVenta\User;
 
 class CitasController extends Controller
 {
@@ -16,7 +17,10 @@ class CitasController extends Controller
      */
     public function index()
     {
-        //
+      $hoy = Carbon::now('America/Guatemala');
+      $hoyF = $hoy->toDateString();
+      $citas = Citas::with('user')->where('fecha', $hoyF)->get();
+      return view('citasHoy', ['citas' => $citas]);
     }
 
     /**
@@ -38,7 +42,6 @@ class CitasController extends Controller
     public function store(Request $request)
     {
 
-      dd($request);
     }
 
     /**
@@ -79,6 +82,11 @@ class CitasController extends Controller
         $mergeQuery = date('Y-m-d H:i:s', strtotime("$cita->fecha $cita->hora"));
         $Fcita = Carbon::parse($mergeQuery, 'America/Guatemala');
         $length = $Frequest->diffInHours($Fcita);
+        if($Frequest->lt($Fcita)){
+          return redirect()->back()->with(['error' => 'No puede crear una cita al pasado']);
+        }
+        else{
+
         if($length >= 1){
           $cita->update($request->all());
           $cita->save();
@@ -87,6 +95,7 @@ class CitasController extends Controller
         else{
           return redirect()->back()->with(['error' => 'Hay una cita a las '.$cita->hora.' Elija otra hora']);
         }
+      }
      }
 
     /**

@@ -17,7 +17,6 @@
         <link href="assets/plugins/mjolnic-bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
         <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
         <link href="assets/plugins/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet">
-        <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
         <!-- Switchery css -->
         <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
@@ -43,7 +42,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index" class="logo">
+                        <a href="/" class="logo">
                             <i class="zmdi zmdi-group-work icon-c-logo"></i>
                             <span>Uplon</span>
                         </a>
@@ -170,7 +169,7 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
@@ -217,120 +216,34 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="index"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                                <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> User Interface </span> </a>
+                                <a href="#"><i class="fa fa-users"></i> <span> Pacientes </span> </a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                      <ul>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                      </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Citas </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="ui-buttons">Buttons</a></li>
-                                            <li><a href="ui-cards">Cards</a></li>
-                                            <li><a href="ui-dropdowns">Dropdowns</a></li>
-                                            <li><a href="ui-checkbox-radio">Checkboxs-Radios</a></li>
-                                            <li><a href="ui-navs">Navs</a></li>
-                                            <li><a href="ui-progress">Progress</a></li>
-                                            <li><a href="ui-modals">Modals</a></li>
-                                            <li><a href="ui-alerts">Alerts</a></li>
-                                            <li><a href="ui-bootstrap">Bootstrap UI</a></li>
-                                            <li><a href="ui-typography">Typography</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="ui-notification">Notification</a></li>
-                                            <li><a href="ui-carousel">Carousel</a></li>
-                                            <li><a href="components-grid">Grid</a></li>
-                                            <li><a href="components-range-sliders">Range sliders</a></li>
-                                            <li><a href="components-sweet-alert">Sweet Alerts</a></li>
-                                            <li><a href="components-ratings">Ratings</a></li>
-                                            <li><a href="components-treeview">Treeview</a></li>
-                                            <li><a href="components-tour">Tour</a></li>
-                                            <li><a href="widgets-tiles">Tile Box</a></li>
-                                            <li><a href="widgets-charts">Chart Widgets</a></li>
+                                            <li>{!! link_to('citas-hoy', $title = 'Ver citas de hoy', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-por-fecha', $title = 'Ver citas por fecha', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-album"></i> <span> Icons </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="icons-materialdesign">Material Design</a></li>
-                                    <li><a href="icons-ionicons">Ion Icons</a></li>
-                                    <li><a href="icons-fontawesome">Font awesome</a></li>
-                                    <li><a href="icons-themify">Themify Icons</a></li>
-                                    <li><a href="icons-simple-line">Simple line Icons</a></li>
-                                    <li><a href="icons-weather">Weather Icons</a></li>
-                                    <li><a href="icons-pe7">PE7 Icons</a></li>
-                                    <li><a href="icons-typicons">Typicons</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-text"></i><span> Forms </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="form-elements">General Elements</a></li>
-                                    <li><a href="form-advanced">Advanced Form</a></li>
-                                    <li><a href="form-validation">Form Validation</a></li>
-                                    <li><a href="form-pickers">Form Pickers</a></li>
-                                    <li><a href="form-wizard">Form Wizard</a></li>
-                                    <li><a href="form-mask">Form Masks</a></li>
-                                    <li><a href="form-uploads">Multiple File Upload</a></li>
-                                    <li><a href="form-xeditable">X-editable</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Tables </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="tables-basic">Basic Tables</a></li>
-                                    <li><a href="tables-datatable">Data Table</a></li>
-                                    <li><a href="tables-responsive">Responsive Table</a></li>
-                                    <li><a href="tables-tablesaw">Tablesaw</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-chart"></i><span> Charts </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="chart-flot">Flot Chart</a></li>
-                                    <li><a href="chart-morris">Morris Chart</a></li>
-                                    <li><a href="chart-chartjs">Chartjs</a></li>
-                                    <li><a href="chart-peity">Peity Charts</a></li>
-                                    <li><a href="chart-chartist">Chartist Charts</a></li>
-                                    <li><a href="chart-c3">C3 Charts</a></li>
-                                    <li><a href="chart-sparkline">Sparkline charts</a></li>
-                                    <li><a href="chart-knob">Jquery Knob</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-item"></i> <span> Pages </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="calendar">Calendar</a></li>
-                                            <li><a href="pages-starter">Starter Page</a></li>
-                                            <li><a href="pages-login">Login</a></li>
-                                            <li><a href="pages-register">Register</a></li>
-                                            <li><a href="pages-recoverpw">Recover Password</a></li>
-                                            <li><a href="pages-lock-screen">Lock Screen</a></li>
-                                            <li><a href="pages-404">Error 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-500">Error 500</a></li>
-                                            <li><a href="pages-timeline">Timeline</a></li>
-                                            <li><a href="pages-invoice">Invoice</a></li>
-                                            <li><a href="pages-pricing">Pricing</a></li>
-                                            <li><a href="pages-gallery">Gallery</a></li>
-                                            <li><a href="pages-maintenance">Maintenance</a></li>
-                                            <li><a href="pages-comingsoon">Coming Soon</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="{{ route('servicio.index') }}"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
                             </li>
 
                         </ul>
@@ -760,9 +673,8 @@
         <script src="assets/plugins/moment/moment.js"></script>
         <script src="assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
         <script src="assets/plugins/mjolnic-bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-        <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
         <script src="assets/plugins/clockpicker/bootstrap-clockpicker.js"></script>
-        <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 
         <script src="assets/pages/jquery.form-pickers.init.js"></script>
 

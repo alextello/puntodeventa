@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('usuario')
+{{ 'Hola '.Sentinel::getUser()->first_name }}
+@endsection
 @section('cuerpo')
 <div class="wrapper">
     <div class="container">

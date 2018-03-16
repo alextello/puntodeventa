@@ -43,7 +43,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="header-title m-t-0">Nuevo Servicio</h4>
+                            <h4 class="header-title m-t-0">Actualizar servicio</h4>
                             <p class="text-muted font-13 m-b-10">
                                 Llenar todos los campos
                             </p>
@@ -51,9 +51,9 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="p-20">
-                                      {!!  Form::open(['route' => 'servicio.store', 'method' => 'POST']) !!}
+                                      {!!  Form::model($servicio, ['route' => ['servicio.update', $servicio->id],'method'=>'PUT']) !!}
                                       @include('layouts.form-servicio')
-                                      {{ Form::button('Guardar', ['class' => 'btn btn-outline-success waves-effect waves-light btn-sm pull-right', 'type'=>'submit']) }}
+                                      {!! Form::submit('Actualizar', ['class' => 'form-control btn btn-success']) !!}
                                       {!! Form::close() !!}
                                     </div>
                                 </div>

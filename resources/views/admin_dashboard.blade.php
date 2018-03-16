@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('usuario')
+{{ 'Hola! ' . Sentinel::getUser()->first_name }}
+@endsection
 @section('cuerpo')
 <div class="wrapper">
     <div class="container">
@@ -29,7 +32,7 @@
                     <i class="icon-layers float-right text-muted"></i>
                     <h6 class="text-muted text-uppercase m-b-20">Pacientes</h6>
                     <h2 class="m-b-20" data-plugin="counterup">{{$numUsers}}</h2>
-                    <span class="label label-success"> +11% </span> <span class="text-muted">From previous period</span>
+
                 </div>
             </div>
 
@@ -38,7 +41,6 @@
                     <i class="icon-paypal float-right text-muted"></i>
                     <h6 class="text-muted text-uppercase m-b-20">Citas</h6>
                     <h2 class="m-b-20"><span data-plugin="counterup">{{$numCitas}}</span></h2>
-                    <span class="label label-danger"> -29% </span> <span class="text-muted">From previous period</span>
                 </div>
             </div>
 
@@ -46,8 +48,7 @@
                 <div class="card-box tilebox-one">
                     <i class="icon-chart float-right text-muted"></i>
                     <h6 class="text-muted text-uppercase m-b-20">Pagos</h6>
-                    <h2 class="m-b-20">$<span data-plugin="counterup">15.9</span></h2>
-                    <span class="label label-pink"> 0% </span> <span class="text-muted">From previous period</span>
+                    <h2 class="m-b-20">Q<span data-plugin="counterup">{{ $dinero }}</span></h2>
                 </div>
             </div>
 
@@ -142,27 +143,27 @@
                         <div class="card-box">
                             <h4 class="header-title m-t-0 m-b-20">Porcentaje de citas</h4>
 
-                            <p class="font-600 m-b-5">Cancelada <span class="text-danger pull-right"><b>78%</b></span></p>
+                            <p class="font-600 m-b-5">Solicitud de cancelacion <span class="text-danger pull-right"><b>{{$Psolicitudes}}%</b></span></p>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-xs bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
+                                <div class="progress-bar progress-bar-striped progress-xs bg-danger" role="progressbar" sstyle="width: {{ $Psolicitudes.'%' }}" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
                             </div>
                         </div>
 
                         <div class="card-box">
                             <h4 class="header-title m-t-0 m-b-20">Porcentaje de citas</h4>
 
-                            <p class="font-600 m-b-5">Culminadas <span class="text-success pull-right"><b>25%</b></span></p>
+                            <p class="font-600 m-b-5">Culminadas <span class="text-success pull-right"><b>{{$Pterminadas}}%</b></span></p>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success progress-xs" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-success progress-xs" role="progressbar" style="width: {{ $Pterminadas.'%' }}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
 
                         <div class="card-box">
                             <h4 class="header-title m-t-0 m-b-20">Porcentaje de citas</h4>
 
-                            <p class="font-600 m-b-5">Pendientes <span class="text-warning pull-right"><b>75%</b></span></p>
+                            <p class="font-600 m-b-5">Pendientes <span class="text-warning pull-right"><b>{{$Ppendientes}}%</b></span></p>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-warning progress-xs" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-warning progress-xs" role="progressbar" style="width: {{ $Ppendientes.'%' }}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
 

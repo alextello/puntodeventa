@@ -15,19 +15,19 @@
     {!! Html::style('assets/plugins/datatables/buttons.bootstrap4.min.css') !!}
     <!-- Responsive datatable examples -->
     {!! Html::style('assets/plugins/datatables/responsive.bootstrap4.min.css') !!}
-    <link href="" rel="stylesheet" type="text/css" />
+
 
     <!-- Switchery css -->
     {!! Html::style('assets/plugins/switchery/switchery.min.css') !!}
-    <link href="" rel="stylesheet" />
+
 
     <!-- Bootstrap CSS -->
     {!! Html::style('assets/css/bootstrap.min.css') !!}
-    <link href="" rel="stylesheet" type="text/css" />
+
 
     <!-- App CSS -->
     {!! Html::style('assets/css/style.css') !!}
-    <link href="" rel="stylesheet" type="text/css" />
+
 
     <!-- Modernizr js -->
     {!! Html::style('assets/js/modernizr.min.js') !!}
@@ -123,7 +123,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-faded">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="img" class="rounded-circle img-fluid">
+                                            {{ HTML::image('assets/images/users/avatar-1.jpg', 'alt user', array('class' => 'rounded-circle')) }}
                                         </div>
                                         <p class="notify-details">
                                             <b>Robert Taylor</b>
@@ -173,7 +173,7 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
@@ -220,30 +220,36 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="/"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
+                                <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> Pacientes </span> </a>
+                                <a href="#"><i class="fa fa-users"></i> <span> Pacientes </span> </a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                      <ul>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                      </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Citas </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
-                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-hoy', $title = 'Ver citas de hoy', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-por-fecha', $title = 'Ver citas por fecha', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-album"></i> <span> Citas </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-lock-screen">Listar Citas</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="{{ route('servicio.index') }}"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
                             </li>
+
                         </ul>
                         <!-- End navigation menu  -->
                     </div>

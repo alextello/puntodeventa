@@ -1,33 +1,40 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-        <meta name="author" content="Coderthemes">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
 
-        <!-- App Favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App Favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- App title -->
-        <title>Uplon - Responsive Admin Dashboard Template</title>
+    <!-- App title -->
+    <title>Pacientes</title>
 
-        <!-- X-editable css -->
-        <link type="text/css" href="assets/plugins/x-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <!-- DataTables -->
+    {!! Html::style('assets/plugins/datatables/dataTables.bootstrap4.min.css') !!}
+    {!! Html::style('assets/plugins/datatables/buttons.bootstrap4.min.css') !!}
+    <!-- Responsive datatable examples -->
+    {!! Html::style('assets/plugins/datatables/responsive.bootstrap4.min.css') !!}
 
-        <!-- Switchery css -->
-        <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
 
-        <!-- Bootstrap CSS -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Switchery css -->
+    {!! Html::style('assets/plugins/switchery/switchery.min.css') !!}
 
-        <!-- App CSS -->
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-        <!-- Modernizr js -->
-        <script src="assets/js/modernizr.min.js"></script>
+    <!-- Bootstrap CSS -->
+    {!! Html::style('assets/css/bootstrap.min.css') !!}
 
-    </head>
+
+    <!-- App CSS -->
+    {!! Html::style('assets/css/style.css') !!}
+
+
+    <!-- Modernizr js -->
+    {!! Html::style('assets/js/modernizr.min.js') !!}
+    <script src=""></script>
+     <meta name="_token" content="{{ csrf_token() }}" />
+
+</head>
 
 
     <body>
@@ -39,9 +46,9 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index" class="logo">
+                        <a href="/" class="logo">
                             <i class="zmdi zmdi-group-work icon-c-logo"></i>
-                            <span>Uplon</span>
+                            <span>MEDIX</span>
                         </a>
                     </div>
                     <!-- End Logo container-->
@@ -116,7 +123,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-faded">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="img" class="rounded-circle img-fluid">
+                                            {{ HTML::image('assets/images/users/avatar-1.jpg', 'alt user', array('class' => 'rounded-circle')) }}
                                         </div>
                                         <p class="notify-details">
                                             <b>Robert Taylor</b>
@@ -166,7 +173,7 @@
                             <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
@@ -190,7 +197,7 @@
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="/logout" class="dropdown-item notify-item">
                                         <i class="zmdi zmdi-power"></i> <span>Logout</span>
                                     </a>
 
@@ -213,120 +220,34 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="index"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                                <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> User Interface </span> </a>
+                                <a href="#"><i class="fa fa-users"></i> <span> Pacientes </span> </a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                      <ul>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                      </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Citas </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="ui-buttons">Buttons</a></li>
-                                            <li><a href="ui-cards">Cards</a></li>
-                                            <li><a href="ui-dropdowns">Dropdowns</a></li>
-                                            <li><a href="ui-checkbox-radio">Checkboxs-Radios</a></li>
-                                            <li><a href="ui-navs">Navs</a></li>
-                                            <li><a href="ui-progress">Progress</a></li>
-                                            <li><a href="ui-modals">Modals</a></li>
-                                            <li><a href="ui-alerts">Alerts</a></li>
-                                            <li><a href="ui-bootstrap">Bootstrap UI</a></li>
-                                            <li><a href="ui-typography">Typography</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="ui-notification">Notification</a></li>
-                                            <li><a href="ui-carousel">Carousel</a></li>
-                                            <li><a href="components-grid">Grid</a></li>
-                                            <li><a href="components-range-sliders">Range sliders</a></li>
-                                            <li><a href="components-sweet-alert">Sweet Alerts</a></li>
-                                            <li><a href="components-ratings">Ratings</a></li>
-                                            <li><a href="components-treeview">Treeview</a></li>
-                                            <li><a href="components-tour">Tour</a></li>
-                                            <li><a href="widgets-tiles">Tile Box</a></li>
-                                            <li><a href="widgets-charts">Chart Widgets</a></li>
+                                            <li>{!! link_to('citas-hoy', $title = 'Ver citas de hoy', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-por-fecha', $title = 'Ver citas por fecha', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-album"></i> <span> Icons </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="icons-materialdesign">Material Design</a></li>
-                                    <li><a href="icons-ionicons">Ion Icons</a></li>
-                                    <li><a href="icons-fontawesome">Font awesome</a></li>
-                                    <li><a href="icons-themify">Themify Icons</a></li>
-                                    <li><a href="icons-simple-line">Simple line Icons</a></li>
-                                    <li><a href="icons-weather">Weather Icons</a></li>
-                                    <li><a href="icons-pe7">PE7 Icons</a></li>
-                                    <li><a href="icons-typicons">Typicons</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-text"></i><span> Forms </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="form-elements">General Elements</a></li>
-                                    <li><a href="form-advanced">Advanced Form</a></li>
-                                    <li><a href="form-validation">Form Validation</a></li>
-                                    <li><a href="form-pickers">Form Pickers</a></li>
-                                    <li><a href="form-wizard">Form Wizard</a></li>
-                                    <li><a href="form-mask">Form Masks</a></li>
-                                    <li><a href="form-uploads">Multiple File Upload</a></li>
-                                    <li><a href="form-xeditable">X-editable</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Tables </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="tables-basic">Basic Tables</a></li>
-                                    <li><a href="tables-datatable">Data Table</a></li>
-                                    <li><a href="tables-responsive">Responsive Table</a></li>
-                                    <li><a href="tables-tablesaw">Tablesaw</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-chart"></i><span> Charts </span> </a>
-                                <ul class="submenu">
-                                    <li><a href="chart-flot">Flot Chart</a></li>
-                                    <li><a href="chart-morris">Morris Chart</a></li>
-                                    <li><a href="chart-chartjs">Chartjs</a></li>
-                                    <li><a href="chart-peity">Peity Charts</a></li>
-                                    <li><a href="chart-chartist">Chartist Charts</a></li>
-                                    <li><a href="chart-c3">C3 Charts</a></li>
-                                    <li><a href="chart-sparkline">Sparkline charts</a></li>
-                                    <li><a href="chart-knob">Jquery Knob</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-collection-item"></i> <span> Pages </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="calendar">Calendar</a></li>
-                                            <li><a href="pages-starter">Starter Page</a></li>
-                                            <li><a href="pages-login">Login</a></li>
-                                            <li><a href="pages-register">Register</a></li>
-                                            <li><a href="pages-recoverpw">Recover Password</a></li>
-                                            <li><a href="pages-lock-screen">Lock Screen</a></li>
-                                            <li><a href="pages-404">Error 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-500">Error 500</a></li>
-                                            <li><a href="pages-timeline">Timeline</a></li>
-                                            <li><a href="pages-invoice">Invoice</a></li>
-                                            <li><a href="pages-pricing">Pricing</a></li>
-                                            <li><a href="pages-gallery">Gallery</a></li>
-                                            <li><a href="pages-maintenance">Maintenance</a></li>
-                                            <li><a href="pages-comingsoon">Coming Soon</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="{{ route('servicio.index') }}"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
                             </li>
 
                         </ul>
@@ -348,20 +269,7 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light"
-                                    data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i
-                                    class="fa fa-cog"></i></span></button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-
-                        </div>
-                        <h4 class="page-title">X-Editable</h4>
+                        <h4 class="page-title"><br></h4>
                     </div>
                 </div>
                 <!-- end row -->
@@ -369,59 +277,58 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card-box">
-                            <h4 class="m-b-30 m-t-0 header-title">Inline Editor</h4>
-                            <form action="#" class="form-horizontal">
-                                <div class="form-group row">
-                                    <label class="col-sm-5 form-control-label">Simple Text Field</label>
-                                    <div class="col-sm-7">
-                                        <a href="#" id="inline-username" data-type="text" data-pk="1" data-title="Enter username">superuser</a>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5 form-control-label">Empty text field, required</label>
-                                    <div class="col-sm-7">
-                                        <a href="#" id="inline-firstname" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname"></a>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5 form-control-label">Select, local array, custom display</label>
-                                    <div class="col-sm-7">
-                                        <a href="#" id="inline-sex" data-type="select" data-pk="1" data-value="" data-title="Select sex"></a>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5 form-control-label">Select, error while loading</label>
-                                    <div class="col-sm-7">
-                                        <a href="#" id="inline-status" data-type="select" data-pk="1" data-value="0" data-source="/status" data-title="Select status">Active</a>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5 form-control-label">Combodate</label>
-                                    <div class="col-sm-7">
-                                        <a href="#" id="inline-dob" data-type="combodate" data-value="1995-01-17" data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY" data-template="D / MMM / YYYY" data-pk="1"  data-title="Select Date of birth"></a>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-5 form-control-label">Textarea, buttons below. Submit by <i>ctrl+enter</i></label>
-                                    <div class="col-sm-7">
-                                        <a href="#" id="inline-comments" data-type="textarea" data-pk="1" data-placeholder="Your comments here..." data-title="Enter comments">awesome user!</a>
-                                    </div>
-                                </div>
+                        <div class="card-box table-responsive">
+                            <h4 class="m-t-0 header-title"><b>MIS PACIENTES</b></h4>
+                            <p class="text-muted font-13 m-b-30"></p>
 
-                            </form>
+                            <table id="datatable" class="table table-striped table-bordered">
+                  <thead>
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Telefono</th>
+                      <th>Hora</th>
+                      <th>Descripcion de cita</th>
+                      <th>Estado</th>
+                      <th>Culminar cita</th>
+                  </tr>
+                  </thead>
+
+
+                  <tbody>
+                    @forelse ($citas as $key => $ct)
+                    <tr>
+                  <td>{{ $ct->user->first_name }}</td>
+                  <td>{{ $ct->user->last_name }}</td>
+                  <td>{{ $ct->user->telefono }}</td>
+                  <td>{{ $ct->hora }}</td>
+                  <td>{{$ct->descripcion }}</td>
+                  @if(empty($ct->estado))
+                  <td>No culminada</td>
+                  <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
+                       {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                  {!! Form::close() !!}</td>
+                  @else
+                  <td>Culminada</td>
+                  <td><strong>Cita finalizada</strong></td>
+                  @endif
+                  </tr>
+                  @empty
+                  @endforelse
+                  </tbody>
+              </table>
                         </div>
                     </div>
-                </div>
-                <!-- end row -->
+                </div> <!-- end row -->
 
 
             </div> <!-- container -->
 
 
+
             <!-- Footer -->
             <footer class="footer">
-                2016 - 2017 © Uplon.
+                2016 - 2017 UMG
             </footer>
             <!-- End Footer -->
 
@@ -546,29 +453,115 @@
 
         </div> <!-- End wrapper -->
 
+      <div class="modal fade" id="create" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" name="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-tittle"></h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" role="form" action="#" method="post">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="email" name="email" placeholder="Email">
+                    </div>
+                </div>
 
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="first_name" required="" placeholder="Nombres">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="last_name" required="" placeholder="Apellidos">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="number" name="telefono" required="" placeholder="Telefono">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="residencia" required="" placeholder="Residencia">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-12">
+                    <p>Nacimiento: </p>
+                    <input type="date" name="nacimiento" required="" class="form-control" placeholder="Fecha de nacimiento">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="username" required="" placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input class="form-control" type="password" name="password" required="" placeholder="Password">
+                    </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" type="submit" id="add" name="add">
+              <span class="fa fa-plus"></span> Añadir</button>
+              <button type="button" name="button" class="btn btn-danger">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
         <script>
             var resizefunc = [];
         </script>
 
-        <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script><!-- Tether for Bootstrap -->
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/plugins/switchery/switchery.min.js"></script>
 
-        <!-- XEditable Plugin -->
-        <script src="assets/plugins/moment/moment.js"></script>
-        <script type="text/javascript" src="assets/plugins/x-editable/js/bootstrap-editable.min.js"></script>
-        <script type="text/javascript" src="assets/pages/jquery.xeditable.js"></script>
+
+        <!-- jQuery  -->
+        {!! Html::script('assets/js/jquery.min.js') !!}
+        {!! Html::script('assets/js/popper.min.js') !!}
+        {!! Html::script('assets/js/bootstrap.min.js') !!}
+        {!! Html::script('assets/js/waves.js') !!}
+        {!! Html::script('assets/js/jquery.nicescroll.js') !!}
+        {!! Html::script('assets/plugins/switchery/switchery.min.js') !!}
+        {!! Html::script('assets/plugins/datatables/jquery.dataTables.min.js') !!}
+        {!! Html::script('assets/plugins/datatables/dataTables.bootstrap4.min.js') !!}
+
+
+        <!-- Responsive examples -->
+        {!! Html::script('assets/plugins/datatables/dataTables.responsive.min.js') !!}
+        {!! Html::script('assets/plugins/datatables/responsive.bootstrap4.min.js') !!}
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        {!! Html::script('assets/js/jquery.core.js') !!}
+        {!! Html::script('assets/js/jquery.app.js') !!}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').DataTable();
+
+                //Buttons examples
+                var table = $('#datatable-buttons').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf']
+                });
+
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            } );
+
+        </script>
+
 
     </body>
 </html>

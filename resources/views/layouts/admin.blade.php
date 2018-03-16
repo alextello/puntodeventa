@@ -9,23 +9,23 @@
         <!-- App Favicon -->
         {!! Html::style('assets/images/favicon.ico') !!}
 
-        <!-- App title -->
-        <title>Dashboard Operador</title>
+       <!-- App title -->
+       <title>Dashboard Operador</title>
 
-        <!--Morris Chart CSS -->
-          {!! Html::style('assets/plugins/morris/morris.css') !!}
+       <!--Morris Chart CSS -->
+         {!! Html::style('assets/plugins/morris/morris.css') !!}
 
-        <!-- Switchery css -->
-          {!! Html::style('assets/plugins/switchery/switchery.min.css') !!}
+       <!-- Switchery css -->
+         {!! Html::style('assets/plugins/switchery/switchery.min.css') !!}
 
-        <!-- Bootstrap CSS -->
-          {!! Html::style('assets/css/bootstrap.min.css') !!}
+       <!-- Bootstrap CSS -->
+         {!! Html::style('assets/css/bootstrap.min.css') !!}
 
-        <!-- App CSS -->
-          {!! Html::style('assets/css/style.css') !!}
+       <!-- App CSS -->
+         {!! Html::style('assets/css/style.css') !!}
 
-        <!-- Modernizr js -->
-        <script src="assets/js/modernizr.min.js"></script>
+       <!-- Modernizr js -->
+       <script src="assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -64,121 +64,15 @@
                             </li>
 
                             <li class="list-inline-item dropdown notification-list">
-                                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
-                                   aria-haspopup="false" aria-expanded="false">
-                                    <i class="zmdi zmdi-notifications-none noti-icon"></i>
-                                    <span class="noti-icon-badge"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg" aria-labelledby="Preview">
-                                    <!-- item-->
-                                    <div class="dropdown-item noti-title">
-                                        <h5><small><span class="label label-danger float-right">7</span>Notification</small></h5>
-                                    </div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-success"><i class="icon-bubble"></i></div>
-                                        <p class="notify-details">Robert S. Taylor commented on Admin<small class="text-muted">1min ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-info"><i class="icon-user"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">1min ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-danger"><i class="icon-like"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">1min ago</small></p>
-                                    </a>
-
-                                    <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
-                                        View All
-                                    </a>
-
-                                </div>
-                            </li>
-
-                            <li class="list-inline-item dropdown notification-list">
-                                <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
-                                   aria-haspopup="false" aria-expanded="false">
-                                    <i class="zmdi zmdi-email noti-icon"></i>
-                                    <span class="noti-icon-badge"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg" aria-labelledby="Preview">
-                                    <!-- item-->
-                                    <div class="dropdown-item noti-title bg-success">
-                                        <h5><small><span class="label label-danger float-right">7</span>Messages</small></h5>
-                                    </div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-faded">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="img" class="rounded-circle img-fluid">
-                                        </div>
-                                        <p class="notify-details">
-                                            <b>Robert Taylor</b>
-                                            <span>New tasks needs to be done</span>
-                                            <small class="text-muted">1min ago</small>
-                                        </p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-faded">
-                                            <img src="assets/images/users/avatar-3.jpg" alt="img" class="rounded-circle img-fluid">
-                                        </div>
-                                        <p class="notify-details">
-                                            <b>Carlos Crouch</b>
-                                            <span>New tasks needs to be done</span>
-                                            <small class="text-muted">1min ago</small>
-                                        </p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-faded">
-                                            <img src="assets/images/users/avatar-4.jpg" alt="img" class="rounded-circle img-fluid">
-                                        </div>
-                                        <p class="notify-details">
-                                            <b>Robert Taylor</b>
-                                            <span>New tasks needs to be done</span>
-                                            <small class="text-muted">1min ago</small>
-                                        </p>
-                                    </a>
-
-                                    <!-- All-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item notify-all">
-                                        View All
-                                    </a>
-
-                                </div>
-                            </li>
-
-                            <li class="list-inline-item dropdown notification-list">
-                                <a class="nav-link waves-effect waves-light right-bar-toggle" href="javascript:void(0);">
-                                    <i class="zmdi zmdi-format-subject noti-icon"></i>
-                                </a>
-                            </li>
-
-                            <li class="list-inline-item dropdown notification-list">
                                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
+                                    {!! Html::image('assets/images/users/avatar-1.jpg', 'user', array('class' => 'rounded-circle')) !!}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>Welcome ! John</small> </h5>
+                                        <h5 class="text-overflow"><small>@yield('usuario')</small> </h5>
                                     </div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="zmdi zmdi-lock-open"></i> <span>Lock Screen</span>
-                                    </a>
-
                                     <!-- item-->
                                     <a href="/logout" class="dropdown-item notify-item">
                                         <i class="zmdi zmdi-power">
@@ -201,34 +95,36 @@
             <div class="navbar-custom">
                 <div class="container">
                     <div id="navigation">
-                        <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="/"><i class="zmdi zmdi-view-dashboard"></i> <span> Inicio </span> </a>
+                                <a href="/"><i class="fa fa-home"></i> <span> Inicio </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-format-underlined"></i> <span> Pacientes </span> </a>
+                                <a href="#"><i class="fa fa-users"></i> <span> Pacientes </span> </a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                      <ul>
+                                          <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
+                                          <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                      </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="fa fa-calendar-plus-o"></i> <span> Citas </span> </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li>{!! link_to('pacientes/create', $title = 'Agregar Paciente', $attributes = [], $secure = null); !!}</li>
-                                            <li>{!! link_to('pacientes', $title = 'Listar Pacientes', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-hoy', $title = 'Ver citas de hoy', $attributes = [], $secure = null); !!}</li>
+                                            <li>{!! link_to('citas-por-fecha', $title = 'Ver citas por fecha', $attributes = [], $secure = null); !!}</li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-album"></i> <span> Citas </span> </a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="pages-register">Nueva Cita</a></li>
-                                            <li><a href="pages-lock-screen">Listar Citas</a></li>
-                                            <li><a href="pages-lock-screen">Posponer / Cancelar Cita</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="{{ route('servicio.index') }}"><i class="fa fa-ambulance"></i><span> Servicios </span> </a>
                             </li>
 
                         </ul>

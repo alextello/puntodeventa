@@ -55,7 +55,7 @@ $admin = [
     }
 
 
-    DB::table('servicios')->insert([
+    DB::table('servicio')->insert([
               'codigo' => str_random(2),
               'tipo' => 'Consulta',
               'descripcion' => 'inspeccion de rutina',

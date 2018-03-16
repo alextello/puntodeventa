@@ -24,6 +24,6 @@ class citas extends Model
 
     public function servicio()
    {
-       return $this->belongsTo('PuntoVenta\Servicio', 'id');
+       return $this->belongsTo('PuntoVenta\Servicio', 'idServicio');
    }
 }
