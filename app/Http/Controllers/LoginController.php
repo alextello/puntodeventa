@@ -90,7 +90,21 @@ $Ppendientes = 100-$Pterminadas;
                           foreach($pagos as $p){
                             $dinero = $dinero+$p->servicio->costo;
                           }
-                          return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas, 'dinero' => $dinero]);
+                          $totalCitas = Citas::all()->count();
+                          $terminadas = Citas::where('estado', '1')->count();
+                          $cancelacion = Citas::where('estado', null)->where('solicitud', '1')->count();
+                          if($totalCitas > 0){
+                          $Pterminadas = ($terminadas/$totalCitas)*100;
+                          $Psolicitudes = ($cancelacion/$totalCitas)*100;
+                        }
+                        else{
+                          $Pterminadas = 100;
+                          $Psolicitudes = 0;
+                        }
+                        $Ppendientes = 100-$Pterminadas;
+
+
+                          return view('admin_dashboard', ['numUsers' => $numUsers, 'numCitas' => $numCitas, 'citasPend' => $citasPend, 'pxCitas' => $pxCitas, 'dinero' => $dinero, 'Ppendientes' => $Ppendientes, 'Pterminadas' => $Pterminadas, 'Psolicitudes' => $Psolicitudes]);//retornamos la vista con dicha variable
                         }
                         else{
 

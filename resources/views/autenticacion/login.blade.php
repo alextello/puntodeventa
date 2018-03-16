@@ -4,7 +4,7 @@
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Control De Inventarios</title>
+        <title>MEDIX</title>
         <link rel="icon" type="image/ico" href="assets/images/favicon.ico" />
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
             </div>
             @endif
             <div class="page page-core page-login">
-                <div class="text-center"><h3 class="text-light text-white"><span class="text-lightred">M</span>I <span class="text-lightred">I</span>NVENTARIO</h3></div>
+                <div class="text-center"><h3 class="text-light text-white"><span class="text-lightred">M</span>EDIX <span class="text-lightred">X</span>ELA</h3></div>
                 <div class="container w-420 p-15 bg-white mt-40 text-center">
                     <h2 class="text-light text-greensea">INGRESAR</h2>
 
