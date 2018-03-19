@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- App title -->
-        <title>Uplon - Responsive Admin Dashboard Template</title>
+        <title>Whoops!</title>
 
         <!-- Bootstrap CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,14 +32,14 @@
 
         	<div class="ex-page-content text-center">
                 <div class="text-error">4<span class="ion-sad"></span>4</div>
-                <h3 class="text-uppercase text-white font-600">Page not Found</h3>
+                <h3 class="text-uppercase text-white font-600">Pagina no encontrada</h3>
                 <p class="text-white m-t-30">
-                    It's looking like you may have taken a wrong turn. Don't worry... it happens to
-                    the best of us. You might want to check your internet connection. Here's a little tip that might
-                    help you get back on track.
+                    Puede que hayas tomado un giro equivocado. No te preocupes... le sucede a los mejores de nosotros.
+                    Es posible que desees comprobar tu conexión a Internet.
+                    Aquí hay una pequeña ayuda que podría ayudarte a retomar el rumbo
                 </p>
                 <br>
-                <a class="btn btn-pink waves-effect waves-light" href="index"> Return Home</a>
+                <a class="btn btn-pink waves-effect waves-light" href="/">Regresar</a>
 
             </div>
 
