@@ -76,13 +76,13 @@ class UserController extends Controller
         $ncita = Carbon::parse($merge, 'America/Guatemala');
         $now = Carbon::now('America/Guatemala');
         $length = $now->diffInHours($ncita);
-        if($length > 24){
+        if($length > 48){
           $cita->solicitud = 1;
           $cita->save();
            return redirect()->back()->with(['msj' => 'Solicitud enviada, cuando el administrador verifique, ya no aparecerá su cita pendiente']);
         }
         else{
-           return redirect('/')->with(['error' => 'No puede cancelar una cita en menos de 24 horas']);
+           return redirect('/')->with(['error' => 'No puede cancelar una cita en menos de 48 horas']);
         }
 
         }

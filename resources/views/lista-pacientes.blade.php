@@ -78,7 +78,7 @@
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>@yield('usuario')</small> </h5>
+                                        <h5 class="text-overflow"><small>{{ 'Hola! '.Sentinel::getUser()->first_name}}</small> </h5>
                                     </div>
                                     <!-- item-->
                                     <a href="/logout" class="dropdown-item notify-item">

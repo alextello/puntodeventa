@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-    <meta name="author" content="Coderthemes">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+        <meta name="author" content="Coderthemes">
 
-    <!-- App Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <!-- App Favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!-- App title -->
-    <title>Citas</title>
+        <!-- App title -->
+        <title>Citas por fecha</title>
 
-    <!-- DataTables -->
-    <link href="assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <!-- Responsive datatable examples -->
-    <link href="assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Plugins css -->
+        <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/mjolnic-bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet">
+        <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <!-- Switchery css -->
-    <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
+        <!-- Switchery css -->
+        <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
 
-    <link href="assets/plugins/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet">
-    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="styleshe">
-    <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- App CSS -->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
-    <!-- App CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <!-- Modernizr js -->
+        <script src="assets/js/modernizr.min.js"></script>
 
-
-    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
-    <!-- Modernizr js -->
-    <script src="assets/js/modernizr.min.js"></script>
-
-</head>
+    </head>
 
 
     <body>
@@ -82,7 +75,7 @@
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>{{'Hola! '.Sentinel::getUser()->first_name}}</small> </h5>
+                                        <h5 class="text-overflow"><small>@yield('usuario')</small> </h5>
                                     </div>
                                     <!-- item-->
                                     <a href="/logout" class="dropdown-item notify-item">
@@ -153,8 +146,6 @@
         <!-- ============================================================== -->
         <div class="wrapper">
             <div class="container">
-
-                <!-- Page-Title -->
                 {!!  Form::open(['route' => ['citas-por-fecha'],'method'=>'POST']) !!}
               <div class="form-group">
                   <label>Rango de fecha</label>
@@ -168,111 +159,57 @@
                   {!! Form::submit('Actualizar', ['class' => 'form-control btn btn-success']) !!}
                   {!! Form::close() !!}
               </div>
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card-box table-responsive">
+                          <h4 class="m-t-0 header-title"><b>Citas de hoy</b></h4>
+                          <p class="text-muted font-13 m-b-30"></p>
+
+                          <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefono</th>
+                                <th>Hora</th>
+                                <th>Descripcion de cita</th>
+                                <th>Estado</th>
+                                <th>Culminar cita</th>
+                            </tr>
+                            </thead>
 
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card-box table-responsive">
-                            <h4 class="m-t-0 header-title"><b>MIS CITAS</b></h4>
-                            <p class="text-muted font-13 m-b-30"></p>
-
-                            <div class="form-group">
-                                <label>Date Range</label>
-                                <div>
-                                    <div class="input-daterange input-group" id="date-range" data-placement="left" data-align="bottom">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon bg-custom b-0">to</span>
-                                        <input type="text" class="form-control" name="end" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <table id="datatable" class="table table-striped table-bordered">
-                              <thead>
+                            <tbody>
+                              @forelse ($citas as $key => $ct)
                               <tr>
-                                  <th>Nombre</th>
-                                  <th>Apellido</th>
-                                  <th>Telefono</th>
-                                  <th>Hora</th>
-                                  <th>Descripcion de cita</th>
-                                  <th>Estado</th>
-                                  <th>Culminar cita</th>
-                              </tr>
-                              </thead>
-
-                              <tbody>
-                                @forelse ($citas as $key => $ct)
-                                <tr>
-                              <td>{{ $ct->user->first_name }}</td>
-                              <td>{{ $ct->user->last_name }}</td>
-                              <td>{{ $ct->user->telefono }}</td>
-                              <td>{{ $ct->hora }}</td>
-                              <td>{{$ct->descripcion }}</td>
-                              @if(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->gt(\Carbon\Carbon::parse($ct->fecha)))
-                              <td>No culminada</td>
-                              <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
-                                   {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
-                              {!! Form::close() !!}</td>
-                              @elseif(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->lt(\Carbon\Carbon::parse($ct->fecha)))
-                              <td>No culminada</td>
-                              <td><strong>No se puede finalizar aun</strong></td>
-                              @else
-                              <td>Culminada</td>
-                              <td><strong>No se puede modificar</strong></td>
-                              @endif
-                              </tr>
-                              @empty
-                              @endforelse
-                              </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> <!-- end row -->
-
+                            <td>{{ $ct->user->first_name }}</td>
+                            <td>{{ $ct->user->last_name }}</td>
+                            <td>{{ $ct->user->telefono }}</td>
+                            <td>{{ $ct->hora }}</td>
+                            <td>{{$ct->descripcion }}</td>
+                            @if(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->gt(\Carbon\Carbon::parse($ct->fecha)))
+                            <td>No culminada</td>
+                            <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
+                                 {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                            {!! Form::close() !!}</td>
+                            @elseif(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->lt(\Carbon\Carbon::parse($ct->fecha)))
+                            <td>No culminada</td>
+                            <td><strong>No se puede finalizar aun</strong></td>
+                            @else
+                            <td>Culminada</td>
+                            <td><strong>No se puede modificar</strong></td>
+                            @endif
+                            </tr>
+                            @empty
+                            @endforelse
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div> <!-- end row -->
 
             </div> <!-- container -->
 
-            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="mySmallModalLabel">MODIFICAR CITA</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                          <form action="#" data-parsley-validate novalidate>
-                              <div class="form-group">
-                                  <label for="userName">campo 1<span class="text-danger">*</span></label>
-                                  <input type="text" name="nick" parsley-trigger="change" required
-                                         placeholder="" class="form-control" id="userName">
-                              </div>
-                              <div class="form-group">
-                                  <label for="emailAddress">campo 2<span class="text-danger">*</span></label>
-                                  <input name="email" parsley-trigger="change" required
-                                         placeholder="" class="form-control" id="emailAddress">
-                              </div>
-                              <div class="form-group">
-                                  <label for="pass1">Campo 3<span class="text-danger">*</span></label>
-                                  <input id="pass1" placeholder="" required
-                                         class="form-control">
-                              </div>
-
-                              <div class="form-group text-right m-b-0">
-                                  <button class="btn btn-primary waves-effect waves-light" type="submit">
-                                      Guardar
-                                  </button>
-                                  <button type="reset" class="btn btn-secondary waves-effect m-l-5" data-dismiss="modal">
-                                      Cancelar
-                                  </button>
-                              </div>
-                          </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Footer -->
             <footer class="footer">
@@ -417,42 +354,17 @@
         <script src="assets/plugins/switchery/switchery.min.js"></script>
 
         <script src="assets/plugins/moment/moment.js"></script>
-
-
-        <!-- Required datatable js -->
-        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-
-        <!-- Responsive examples -->
-        <script src="assets/plugins/datatables/dataTables.responsive.min.js"></script>
-        <script src="assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
         <script src="assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
         <script src="assets/plugins/mjolnic-bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
         <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
         <script src="assets/plugins/clockpicker/bootstrap-clockpicker.js"></script>
         <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 
+        <script src="assets/pages/jquery.form-pickers.init.js"></script>
+
         <!-- App js -->
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 
-        <!-- Page specific js -->
-        <script src="assets/pages/jquery.form-pickers.init.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#datatable').DataTable();
-
-                //Buttons examples
-                var table = $('#datatable-buttons').DataTable({
-                    lengthChange: false,
-                    buttons: ['copy', 'excel', 'pdf']
-                });
-
-                table.buttons().container()
-                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
-            } );
-
-        </script>
     </body>
 </html>

@@ -7,25 +7,29 @@
         <meta name="author" content="Coderthemes">
 
         <!-- App Favicon -->
-        {!! Html::style('assets/images/favicon.ico') !!}
+        {!! Html::style('assets/plugins/timepicker/bootstrap-timepicker.min.css') !!}
+        {!! Html::style('aassets/plugins/mjolnic-bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') !!}
+        {!! Html::style('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') !!}
+        {!! Html::style('assets/plugins/clockpicker/bootstrap-clockpicker.min.css') !!}
+        {!! Html::style('assets/plugins/bootstrap-daterangepicker/daterangepicker.css') !!}
+        {!! Html::style('assets/plugins/select2/css/select2.min.css') !!}
+        {!! Html::style('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css') !!}
+        {!! Html::style('assets/plugins/multiselect/css/multi-select.css') !!}
 
-        <!-- App title -->
-        <title>Dashboard Operador</title>
 
-        <!--Morris Chart CSS -->
-        {!! Html::style('assets/plugins/morris/morris.css') !!}
+      <!-- Switchery css -->
 
-        <!-- Switchery css -->
-        {!! Html::style('assets/plugins/switchery/switchery.min.css') !!}
+      {!! Html::style('assets/plugins/switchery/switchery.min.css') !!}
 
-        <!-- Bootstrap CSS -->
-        {!! Html::style('assets/css/bootstrap.min.css') !!}
+      <!-- Bootstrap CSS -->
+      {!! Html::style('assets/css/bootstrap.min.css') !!}
 
-        <!-- App CSS -->
-        {!! Html::style('assets/css/style.css') !!}
+      <!-- App CSS -->
+      {!! Html::style('assets/css/style.css') !!}
 
-        <!-- Modernizr js -->
-        <script src="assets/js/modernizr.min.js"></script>
+      <!-- Modernizr js -->
+      {!! Html::style('assets/js/modernizr.min.js') !!}
+
 
     </head>
 
@@ -71,7 +75,7 @@
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>@yield('usuario')</small> </h5>
+                                        <h5 class="text-overflow"><small>{{ 'Hola! '.Sentinel::getUser()->first_name}}</small> </h5>
                                     </div>
                                     <!-- item-->
                                     <a href="/logout" class="dropdown-item notify-item">
@@ -191,16 +195,6 @@
             @endforeach
                     <div class="col-sm-12">
                         <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light"
-                                    data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i
-                                    class="fa fa-cog"></i></span></button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
 
                         </div>
 
@@ -256,145 +250,7 @@
                             <?php $cont = $cont+1; ?>
                             @empty
                             <h1>Sin Historial</h1>
-
-
                             @endforelse
-
-
-                            <!-- <article class="timeline-item alt">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow-alt"></span>
-                                            <span class="timeline-icon bg-primary"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-primary">Hace 8 hora(s)</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b class="pull-right">Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon bg-purple"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-purple">14 hours ago</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b>Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item alt">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow-alt"></span>
-                                            <span class="timeline-icon"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-muted">19 hours ago</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b class="pull-right">Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-item alt">
-                                <div class="text-right">
-                                    <div class="time-show">
-                                        <a href="#" class="btn btn-custom w-lg">Ayer</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon bg-warning"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-warning">07 January 2016</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b>Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item alt">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow-alt"></span>
-                                            <span class="timeline-icon bg-primary"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-primary">07 January 2016</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b class="pull-right">Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon bg-success"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-success">07 January 2016</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b>Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="timeline-item alt">
-                                <div class="text-right">
-                                    <div class="time-show">
-                                        <a href="#" class="btn btn-custom w-lg">Mes pasado</a>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-item alt">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow-alt"></span>
-                                            <span class="timeline-icon"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-muted">31 December 2015</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b class="pull-right">Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-item">
-                                <div class="timeline-desk">
-                                    <div class="panel">
-                                        <div class="timeline-box">
-                                            <span class="arrow"></span>
-                                            <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
-                                            <h4 class="text-danger">16 Decembar 2015</h4>
-                                            <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                            <b>Nombre Paciente</b><br>
-                                            <p>Aquí se pondría cualquier información que ustedes consideren sobre la cita realizada</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article> -->
-
                         </div>
                     </div>
                 </div>
@@ -568,28 +424,27 @@
             var resizefunc = [];
         </script>
 
-        <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script><!-- Tether for Bootstrap -->
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/plugins/switchery/switchery.min.js"></script>
-
-        <!--Morris Chart-->
-        <script src="assets/plugins/morris/morris.min.js"></script>
-        <script src="assets/plugins/raphael/raphael-min.js"></script>
-
-        <!-- Counter Up  -->
-        <script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
-        <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
-
+        {!! Html::script('assets/js/jquery.min.js') !!}
+        {!! Html::script('assets/js/popper.min.js') !!}
+        {!! Html::script('assets/js/bootstrap.min.js') !!}
+        {!! Html::script('assets/js/waves.js') !!}
+        {!! Html::script('assets/js/jquery.nicescroll.js') !!}
+        {!! Html::script('assets/plugins/switchery/switchery.min.js') !!}
+        {!! Html::script('assets/plugins/moment/moment.js') !!}
+        {!! Html::script('assets/plugins/timepicker/bootstrap-timepicker.min.js') !!}
+        {!! Html::script('assets/plugins/mjolnic-bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') !!}
+        {!! Html::script('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}
+        {!! Html::script('assets/plugins/clockpicker/bootstrap-clockpicker.js') !!}
+        {!! Html::script('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') !!}
+        {!! Html::script('assets/pages/jquery.form-pickers.init.js') !!}
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
-
-        <!-- Page specific js -->
-        <script src="assets/pages/jquery.dashboard.js"></script>
+        {!! Html::script('assets/js/jquery.core.js') !!}
+        {!! Html::script('assets/js/jquery.app.js') !!}
+        {!! Html::script('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js') !!}
+        {!! Html::script('assets/plugins/multiselect/js/jquery.multi-select.js') !!}
+        {!! Html::script('assets/plugins/select2/js/select2.full.min.js') !!}
+        {!! Html::script('assets/js/jquery.app.js') !!}
+        {!! Html::script('assets/js/jquery.app.js') !!}
 
 
     </body>
