@@ -176,16 +176,7 @@
                             <h4 class="m-t-0 header-title"><b>MIS CITAS</b></h4>
                             <p class="text-muted font-13 m-b-30"></p>
 
-                            <div class="form-group">
-                                <label>Date Range</label>
-                                <div>
-                                    <div class="input-daterange input-group" id="date-range" data-placement="left" data-align="bottom">
-                                        <input type="text" class="form-control" name="start" />
-                                        <span class="input-group-addon bg-custom b-0">to</span>
-                                        <input type="text" class="form-control" name="end" />
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <table id="datatable" class="table table-striped table-bordered">
                               <thead>
@@ -197,6 +188,7 @@
                                   <th>Descripcion de cita</th>
                                   <th>Estado</th>
                                   <th>Culminar cita</th>
+                                  <th>No vino</th>
                               </tr>
                               </thead>
 
@@ -208,17 +200,23 @@
                               <td>{{ $ct->user->telefono }}</td>
                               <td>{{ $ct->hora }}</td>
                               <td>{{$ct->descripcion }}</td>
-                              @if(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->gt(\Carbon\Carbon::parse($ct->fecha)))
+                              @if(empty($ct->estado))
                               <td>No culminada</td>
                               <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
                                    {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
                               {!! Form::close() !!}</td>
-                              @elseif(empty($ct->estado) && \Carbon\Carbon::now('America/Guatemala')->lt(\Carbon\Carbon::parse($ct->fecha)))
-                              <td>No culminada</td>
-                              <td><strong>No se puede finalizar aun</strong></td>
-                              @else
+                              <td>{!! Form::open( ['url' => 'novino','method'=>'POST'] ) !!}
+                                  {{ Form::hidden('id', $ct->id) }}
+                                   {{ Form::button('Cancelar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                              {!! Form::close() !!}</td>
+                              @elseif($ct->estado == 2)
+                              <td>Cancelada</td>
+                              <td><strong>Cita cancelada</strong></td>
+                              <td><strong>Cita cancelada</strong></td>
+                              @elseif($ct->estado == 1)
                               <td>Culminada</td>
-                              <td><strong>No se puede modificar</strong></td>
+                              <td><strong>Cita culminada</strong></td>
+                              <td><strong>Cita culminada</strong></td>
                               @endif
                               </tr>
                               @empty
@@ -276,7 +274,7 @@
 
             <!-- Footer -->
             <footer class="footer">
-                2016 - 2017 © Uplon.
+                2016 - 2017 UMG
             </footer>
             <!-- End Footer -->
 

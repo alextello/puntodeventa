@@ -17,7 +17,7 @@ class LoginController extends Controller
     if(Sentinel::check() && Sentinel::getUser()->roles()->first()->slug=='administrator'){
   $role = Sentinel::findRoleById(2);//creamos un objeto del rol user
   $numUsers = $role->users()->with('roles')->count();//consultamos cuantos usuarios hay con ese rol
-  $numCitas = Citas::all()->count();
+  $numCitas = Citas::where('estado', 1)->orWhere('estado', null)->count();
   $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
   $pxCitas = Citas::with(['user'])->where('estado', null)->get();
   $pagos = Citas::with(['servicio'])->where('estado', '1')->get();
@@ -82,7 +82,7 @@ $Ppendientes = 100-$Pterminadas;
                         {
                           $role = Sentinel::findRoleById(2);//creamos un objeto del rol user
                           $numUsers = $role->users()->with('roles')->count();//consultamos cuantos usuarios hay con ese rol
-                          $numCitas = Citas::all()->count();
+                          $numCitas = Citas::where('estado', 1)->orWhere('estado', null)->count();
                           $citasPend = Citas::with(['user'])->where('solicitud', '1')->get();
                           $pxCitas = Citas::with(['user'])->where('estado', null)->get();
                           $pagos = Citas::with(['servicio'])->where('estado', '1')->get();

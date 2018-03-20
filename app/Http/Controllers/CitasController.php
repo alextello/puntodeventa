@@ -107,7 +107,8 @@ class CitasController extends Controller
     public function destroy($id)
     {
         $cita = Citas::find($id);
-        $cita->delete();
+        $cita->estado = 2;
+        $cita->save();
         return redirect()->back()->with(['msj' => 'Se ha eliminado correctamente']);
     }
 }

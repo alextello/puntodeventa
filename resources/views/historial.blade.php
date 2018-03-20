@@ -224,8 +224,16 @@
                                             <span class="timeline-icon bg-danger"><i class="zmdi zmdi-circle"></i></span>
                                             <h4 class="text-danger">{{ \Carbon\Carbon::parse($userC->fecha)->format('d/m/Y')}}</h4>
                                             <p class="timeline-date text-muted"><small>{{ \Carbon\Carbon::parse($userC->hora)->format('g:i A') }}</small></p>
-                                            <b class="pull-right">{{$userC->servicio->descripcion}}</b><br>
+                                            @if($userC->estado == 1)
+                                            <b class="pull-right">Culminada</b><br>
                                             <p>{{$userC->descripcion}}</p>
+                                            @elseif($userC->estado == 2)
+                                            <b class="pull-right">Cancelada</b><br>
+                                            <p>{{$userC->descripcion}}</p>
+                                            @else
+                                            <b class="pull-right">Pendiente</b><br>
+                                            <p>{{$userC->descripcion}}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -239,8 +247,16 @@
                                             <span class="timeline-icon bg-success"><i class="zmdi zmdi-circle"></i></span>
                                             <h4 class="text-success">{{ \Carbon\Carbon::parse($userC->fecha)->format('d/m/Y')}}</h4>
                                             <p class="timeline-date text-muted"><small>{{ \Carbon\Carbon::parse($userC->hora)->format('g:i A') }}</small></p>
-                                            <b class="timeline-date">{{$userC->servicio->descripcion}}</b>
+                                            @if($userC->estado == 1)
+                                            <b class="timeline-date">Culminada</b>
                                             <p>{{$userC->descripcion}}</p>
+                                            @elseif($userC->estado == 2)
+                                            <b class="timeline-date">Cancelada</b>
+                                            <p>{{$userC->descripcion}}</p>
+                                            @else
+                                            <b class="timeline-date">Pendiente</b>
+                                            <p>{{$userC->descripcion}}</p>\
+                                            @endif
 
                                         </div>
                                     </div>
@@ -292,7 +308,7 @@
 
             <!-- Footer -->
             <footer class="footer">
-                2016 - 2017 © Uplon.
+                2018 UMG
             </footer>
             <!-- End Footer -->
 

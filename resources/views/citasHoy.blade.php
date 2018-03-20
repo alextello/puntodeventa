@@ -78,7 +78,7 @@
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                     <!-- item-->
                                     <div class="dropdown-item noti-title">
-                                        <h5 class="text-overflow"><small>@yield('usuario')</small> </h5>
+                                        <h5 class="text-overflow"><small>{{ 'Hola! '.Sentinel::getUser()->first_name}}</small> </h5>
                                     </div>
                                     <!-- item-->
                                     <a href="/logout" class="dropdown-item notify-item">
@@ -175,6 +175,7 @@
                       <th>Descripcion de cita</th>
                       <th>Estado</th>
                       <th>Culminar cita</th>
+                      <th>No vino</th>
                   </tr>
                   </thead>
 
@@ -192,9 +193,18 @@
                   <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
                        {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
                   {!! Form::close() !!}</td>
-                  @else
+                  <td>{!! Form::open( ['url' => 'novino','method'=>'POST'] ) !!}
+                      {{ Form::hidden('id', $ct->id) }}
+                       {{ Form::button('Cancelar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                  {!! Form::close() !!}</td>
+                  @elseif($ct->estado == 2)
+                  <td>Cancelada</td>
+                  <td><strong>Cita cancelada</strong></td>
+                  <td><strong>Cita cancelada</strong></td>
+                  @elseif($ct->estado == 1)
                   <td>Culminada</td>
-                  <td><strong>Cita finalizada</strong></td>
+                  <td><strong>Cita culminada</strong></td>
+                  <td><strong>Cita culminada</strong></td>
                   @endif
                   </tr>
                   @empty

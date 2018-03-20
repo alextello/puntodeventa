@@ -561,7 +561,7 @@
 
             <!-- Footer -->
             <footer class="footer">
-                2016 - 2017 © Uplon.
+                2018 UMG
             </footer>
             <!-- End Footer -->
 

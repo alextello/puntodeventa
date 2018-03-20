@@ -43,6 +43,7 @@ Route::middleware(['autenticado'])->group(function () {
   Route::get('citas-hoy', 'AdminController@citasHoy');
   Route::get('citas-por-fecha', 'AdminController@citasFecha');
   Route::get('culminar-citas', 'AdminController@culminarCita');
+  Route::post('novino', 'AdminController@noVino');
   Route::post('citas-por-fecha', 'AdminController@citasFechaPost')->name('citas-por-fecha');
   Route::resource('servicio', 'ServicioController');
 });

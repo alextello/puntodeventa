@@ -31,13 +31,13 @@ class AdminController extends Controller
       return view('citasFecha', ['citas' => $citas]);
   }
 
-  public function culminarCita(){
-
+  public function noVino(Request $request){
+      $cita = Citas::find($request->id);
+      $cita->estado = 2;
+      $cita->save();
+      return redirect()->back();
   }
 
-  public function culminarCitaPost(){
-
-  }
     // public function listaPacientes(){
     //   $users = User::with(['citas' => function ($query) {
     //   $query->orderBy('fecha', 'asc')->first();
