@@ -109,6 +109,6 @@ class CitasController extends Controller
         $cita = Citas::find($id);
         $cita->estado = 2;
         $cita->save();
-        return redirect()->back()->with(['msj' => 'Se ha eliminado correctamente']);
+        return redirect('/')->with(['msj' => ' Se ha eliminado correctamente']);
     }
 }

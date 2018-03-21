@@ -5,7 +5,12 @@
 @section('cuerpo')
 <div class="wrapper">
     <div class="container">
-        <!-- Page-Title -->
+      @if(session('msj'))
+      <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Listo!</strong> {{ session('msj')}}
+      </div>
+      @endif
         <div class="row">
             <div class="col-sm-12">
                 <div class="btn-group pull-right m-t-15">
@@ -69,7 +74,7 @@
                                 @empty
                                 <p><strong>Sin solicitudes de cancelacion</strong></p>
                                 @endforelse
-                            
+
                             </div>
 
                         </div>
