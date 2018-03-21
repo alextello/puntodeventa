@@ -487,9 +487,8 @@
             } );
 
         </script>
-        {!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') !!}
-        {!! Html::script('assets/js/jquery.core.js') !!}
-        {!! Html::script('assets/js/jquery.app.js') !!}
-            {!! Html::script('js/modales.js') !!}
+
     </body>
+
+        {!! Html::script('js/modales.js') !!}
 </html>
