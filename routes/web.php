@@ -32,7 +32,9 @@ Route::get('formpickers', function(){
   return view('form-pickers');
 });
 
-
+Route::get('prueba', function(){
+  return view('prueba');
+});
 
 
 Route::middleware(['autenticado'])->group(function () {
