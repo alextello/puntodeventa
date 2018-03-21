@@ -202,12 +202,12 @@
                               <td>{{$ct->descripcion }}</td>
                               @if(empty($ct->estado))
                               <td>No culminada</td>
-                              <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE'] ) !!}
-                                   {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                              <td>{!! Form::open( ['route' => ['Ncita.destroy', $ct->id],'method'=>'DELETE', 'id'=>'formculminar'] ) !!}
+                                    {{ Form::button('Culminar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'button', 'id'=>'submitBtn', 'data-toggle'=>'modal', 'data-target'=>'#confirm-submitcc']) }}
                               {!! Form::close() !!}</td>
-                              <td>{!! Form::open( ['url' => 'novino','method'=>'POST'] ) !!}
+                              <td>{!! Form::open( ['url' => 'novino','method'=>'POST', 'id'=>'formnovino'] ) !!}
                                   {{ Form::hidden('id', $ct->id) }}
-                                   {{ Form::button('Cancelar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'submit']) }}
+                                   {{ Form::button('Cancelar', ['class' => 'btn btn-outline-danger waves-effect waves-light btn-sm', 'type'=>'button', 'id'=>'submitBtn', 'data-toggle'=>'modal', 'data-target'=>'#confirm-submitnv' ]) }}
                               {!! Form::close() !!}</td>
                               @elseif($ct->estado == 2)
                               <td>Cancelada</td>
@@ -401,7 +401,42 @@
 
 
 
+        <div class="modal fade" id="confirm-submitnv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Confirmar
+                    </div>
+                    <div class="modal-body">
+                        ¿Seguro que desea terminar la cita? <strong>No puede deshacer los cambios</strong>
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <a href="#" id="submitnv" class="btn btn-danger success">Confirmar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="confirm-submitcc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Confirmar
+                    </div>
+                    <div class="modal-body">
+                        ¿Seguro que desea terminar la cita? <strong>No puede deshacer los cambios</strong>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <a href="#" id="submitcc" class="btn btn-danger success">Confirmar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>
             var resizefunc = [];
         </script>
@@ -452,5 +487,9 @@
             } );
 
         </script>
+        {!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js') !!}
+        {!! Html::script('assets/js/jquery.core.js') !!}
+        {!! Html::script('assets/js/jquery.app.js') !!}
+            {!! Html::script('js/modales.js') !!}
     </body>
 </html>
